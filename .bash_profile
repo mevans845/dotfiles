@@ -52,14 +52,21 @@ function _make_git_alias()
         rest=$rest" $1"
         shift
     done
-    rest='git '$rest
+    rest='git'$rest
     alias $shortname="$rest"
     __git_complete $shortname _git_$longname
 }
+_make_git_alias g1 log --oneline
 _make_git_alias ga add
 _make_git_alias gb branch
-_make_git_alias gc commit
-_make_git_alias gco checkout
+_make_git_alias gc checkout
+_make_git_alias gd diff
+_make_git_alias gf fetch
+_make_git_alias gl log
 _make_git_alias gm commit -m
+_make_git_alias gma commit -am
+_make_git_alias gp push
+_make_git_alias gpu pull
+_make_git_alias gr rebase
 _make_git_alias gs status
 
