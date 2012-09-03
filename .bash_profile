@@ -31,8 +31,10 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# Bash Prompt
-export PS1='\h:\w\e[01;32m$(__git_ps1)\e[00m\$ '
+# Colored bash Prompt
+source .bash_colors
+# shows current git branch
+export PS1="\h:${BLUE}\w${GREEN}\$(__git_ps1)${CLEAR}\$ "
 
 # MacPorts Installer addition on 2012-09-03_at_00:20:36: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -60,6 +62,7 @@ _make_git_alias g1 log --oneline
 _make_git_alias ga add
 _make_git_alias gb branch
 _make_git_alias gc checkout
+_make_git_alias gcl clone
 _make_git_alias gd diff
 _make_git_alias gf fetch
 _make_git_alias gl log
