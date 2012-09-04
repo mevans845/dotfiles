@@ -33,6 +33,9 @@ alias df='df -kTh'
 # Colored output in grep
 alias grep='grep --color=auto'
 
+# Making solarized work with tmux
+alias tmux="TERM=screen-256color-bce tmux"
+
 # bash-completion
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
@@ -42,6 +45,8 @@ fi
 source ~/.bash_colors
 # shows current git branch
 export PS1="\h:${BLUE}\w${GREEN}\$(__git_ps1)${CLEAR}\$ "
+# For tmux powerline support
+export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
 
 ##########################################################################
 # Git aliases (with bash completion!)                                    #

@@ -33,7 +33,11 @@ Bundle 'scrooloose/syntastic'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Be IMproved
 set nocompatible
+
+" Copy/paste from system clipboard
+set clipboard=unnamed
 
 " Sets how many lines of history VIM has to remember
 set history=700
