@@ -1,0 +1,7 @@
+# Fix for vi mode
+C-L: clear-screen
+
+# Menu based completion
+set show-all-if-ambiguous on
+C-j: menu-complete
+C-k: menu-complete-backward
