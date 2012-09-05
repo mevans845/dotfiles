@@ -25,7 +25,9 @@ autocmd vimenter * if !argc() | NERDTree | endif
 
 " CtrlP - fuzzyfinder 
 Bundle 'kien/ctrlp.vim'
-let g:ctrlp_map = '<leader>o'
+let g:ctrlp_map = '<space>'
+let g:ctrlp_cmd = 'CtrlPMixed'
+inoremap <C-space> <Esc>:CtrlPMixed<cr>
 
 " Automatic syntax checking
 Bundle 'scrooloose/syntastic'
@@ -158,9 +160,9 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+set shiftwidth=2
+set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -186,10 +188,6 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>

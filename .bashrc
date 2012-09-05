@@ -41,12 +41,10 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# Colored bash Prompt
-source ~/.bash_colors
-# shows current git branch
-export PS1="\h:${BLUE}\w${GREEN}\$(__git_ps1)${CLEAR}\$ "
+# Poweline style bash prompt!
+export PROMPT_COMMAND="export PS1=\$(~/powerline-bash.py \$?)"
 # For tmux powerline support
-export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
+# export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
 
 ##########################################################################
 # Git aliases (with bash completion!)                                    #
