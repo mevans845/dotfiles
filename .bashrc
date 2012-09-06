@@ -53,8 +53,6 @@ fi
 function _update_ps1()
 {
    export PS1="$(~/powerline-bash.py $?)"
-# For tmux powerline support
-   export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
 }
 
 # Poweline style bash prompt!
