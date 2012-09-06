@@ -46,7 +46,12 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 # Poweline style bash prompt!
-export PROMPT_COMMAND="export PS1=\$(~/powerline-bash.py \$?)"
+if [[ -z "$TMUX" ]]; then
+  export PROMPT_COMMAND="export PS1=\$(~/powerline-bash.py \$?)"
+else
+  export PROMPT_COMMAND=""
+  export PS1="\u@\h \w \$ "
+fi
 # For tmux powerline support
 # export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
 
