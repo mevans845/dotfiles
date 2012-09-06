@@ -5,6 +5,12 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Use vi mode for editing commands
 set -o vi
 
+function _exists()
+{
+  command -v $1 > /dev/null 2>&1
+  echo "$(( !$? ))"
+}
+
 # Opens files in a single MacVim server.
 # Picks the first server in serverlist if there are multiple servers
 function OpenInMacVim {
@@ -20,8 +26,7 @@ function OpenInMacVim {
     fi
 }
 
-if [[ $(command -v mvim > /dev/null 2>&1; echo $?) -eq 0 ]];
-then
+if [[ $(_exists mvim) -ne 0 ]]; then
     alias vi='OpenInMacVim'
 fi
 
@@ -45,15 +50,15 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
 fi
 
-# Poweline style bash prompt!
-if [[ -z "$TMUX" ]]; then
-  export PROMPT_COMMAND="export PS1=\$(~/powerline-bash.py \$?)"
-else
-  export PROMPT_COMMAND=""
-  export PS1="\u@\h \w \$ "
-fi
+function _update_ps1()
+{
+   export PS1="$(~/powerline-bash.py $?)"
 # For tmux powerline support
-# export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
+   export PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
+}
+
+# Poweline style bash prompt!
+export PROMPT_COMMAND="_update_ps1"
 
 ##########################################################################
 # Git aliases (with bash completion!)                                    #
@@ -71,7 +76,10 @@ function _make_git_alias()
     done
     rest='git'$rest
     alias $shortname="$rest"
-    __git_complete $shortname _git_$longname
+
+    if [[ $(_exists __git_complete) -ne 0 ]]; then
+        __git_complete $shortname _git_$longname
+    fi
 }
 _make_git_alias g1 log --oneline
 _make_git_alias ga add

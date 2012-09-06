@@ -13,6 +13,7 @@ class Powerline:
     RSQ = '\]'
     clear_fg = LSQ + ESC + '[38;0m' + RSQ
     clear_bg = LSQ + ESC + '[48;0m' + RSQ
+    reset = LSQ + ESC + '[0m' + RSQ
 
     def __init__(self):
         self.segments = []
@@ -51,7 +52,7 @@ class Powerline:
             i += 1
         s = self.segments[i]
         line += self.fgcolor(s['fg']) + self.bgcolor(s['bg']) + s['content']
-        line += self.clear_bg + self.fgcolor(s['separator_fg']) + s['separator'] + self.clear_fg
+        line += self.reset + self.fgcolor(s['separator_fg']) + s['separator'] + self.reset
         return line
 
 def add_git_segment(powerline):
