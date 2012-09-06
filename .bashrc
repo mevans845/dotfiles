@@ -8,6 +8,12 @@ set -o vi
 # Opens files in a single MacVim server.
 # Picks the first server in serverlist if there are multiple servers
 function OpenInMacVim {
+    if [[ $(type mvim > /dev/null 2>&1; echo $?) -ne 0 ]];
+    then
+        vi $@
+        return
+    fi
+
     server=$(mvim --serverlist | head -1)
     if [ -n "$server" ]; then
         if [ -z "$1" ]; then
