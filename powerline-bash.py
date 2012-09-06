@@ -72,8 +72,13 @@ def add_cwd_segment(powerline):
     #p.append(' \w ', 15, 237)
     home = os.getenv('HOME')
     cwd = os.getcwd()
+
     if cwd.find(home) == 0:
       cwd = cwd.replace(home, '~', 1)
+
+    if cwd[0] == '/':
+      cwd = cwd[1:]
+
     names = cwd.split('/')
     for n in names[:-1]:
       powerline.append(' ' + n + ' ', 250, 237, Powerline.separator_thin, 244)
