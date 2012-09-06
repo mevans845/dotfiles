@@ -96,3 +96,5 @@ _make_git_alias gpu pull
 _make_git_alias gr rebase
 _make_git_alias gs status
 
+# vim as the default editor
+export EDITOR=vim
