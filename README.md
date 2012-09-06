@@ -23,3 +23,4 @@ The .bashrc also has a handy function for adding bash aliases for git commands, 
 
 ![MacVim+Solarized+Powerline+CtrlP](https://raw.github.com/milkbikis/dotfiles-mac/master/git-aliases-screenshot.png)
 
+*  Make the vi command open files in a single MacVim window
