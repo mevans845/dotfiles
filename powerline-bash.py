@@ -56,10 +56,14 @@ class Powerline:
 
 def add_git_segment(powerline):
     try:
-        branch = subprocess.check_output(
-            "git branch 2> /dev/null | grep -e '\*'",
-            shell=True).rstrip()[2:]
-        p.append(' ' + branch + ' ', 22, 148)
+        cmd = "git branch 2> /dev/null | grep -e '\*'"
+        p1 = subprocess.Popen(['git', 'branch'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p2 = subprocess.Popen(['grep', '-e', '\*'], stdin=p1.stdout,
+            stdout=subprocess.PIPE)
+        output = p2.communicate()[0].strip()
+        if len(output) > 0:
+          branch = output.rstrip()[2:]
+          p.append(' ' + branch + ' ', 22, 148)
     except subprocess.CalledProcessError:
       pass
 
