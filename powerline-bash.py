@@ -71,7 +71,7 @@ def add_git_segment(powerline):
 def add_cwd_segment(powerline):
     #p.append(' \w ', 15, 237)
     home = os.getenv('HOME')
-    cwd = os.getcwd()
+    cwd = os.getenv('PWD')
 
     if cwd.find(home) == 0:
       cwd = cwd.replace(home, '~', 1)
