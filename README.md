@@ -11,6 +11,8 @@ Here's how my MacVim window looks:
 
 ### Bash
 
+**Update:** Moved the powerline-bash script to its own [repository](https://github.com/milkbikis/powerline-bash) 
+
 I implemented a [Powerline](https://github.com/Lokaltog/vim-powerline) like prompt for Bash:
 
 ![MacVim+Solarized+Powerline+CtrlP](https://raw.github.com/milkbikis/dotfiles-mac/master/bash-powerline-screenshot.png)
