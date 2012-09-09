@@ -1,3 +1,27 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Be IMproved
+set nocompatible
+
+" Copy/paste from system clipboard
+set clipboard=unnamed
+
+" Sets how many lines of history VIM has to remember
+set history=700
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+
+" Fast saving
+nmap <leader>w :w!<cr>
+
 """"""""""
 " Vundle
 """"""""""
@@ -22,6 +46,7 @@ let g:NERDTreeMinimalUI=1
 let g:NERDTreeIgnore=['\.so$', '\.class$', '\.swp']
 " Open NERDTree if no files specified
 autocmd vimenter * if !argc() | NERDTree | endif
+map <leader>nt :NERDTreeToggle<cr>
 
 " CtrlP - fuzzyfinder 
 Bundle 'kien/ctrlp.vim'
@@ -32,33 +57,11 @@ inoremap <C-space> <Esc>:CtrlPMixed<cr>
 " Automatic syntax checking
 Bundle 'scrooloose/syntastic'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Be IMproved
-set nocompatible
+" tmux inside vim
+Bundle 'benmills/vimux'
 
-" Copy/paste from system clipboard
-set clipboard=unnamed
-
-" Sets how many lines of history VIM has to remember
-set history=700
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
-" Fast saving
-nmap <leader>w :w!<cr>
-
+" Comment/Uncomment quickly
+Bundle 'scrooloose/nerdcommenter'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM user interface
@@ -114,6 +117,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Show a column at 81st character
+set colorcolumn=81
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
@@ -331,7 +336,6 @@ map <leader>q :e ~/buffer<cr>
 map <leader>pp :setlocal paste!<cr>
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -363,31 +367,3 @@ function! VisualSelection(direction) range
 endfunction
 
 
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
-endfunction
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
