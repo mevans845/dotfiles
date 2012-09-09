@@ -52,11 +52,28 @@ fi
 
 function _update_ps1()
 {
-   export PS1="$(~/powerline-bash.py $?)"
+  export PS1="$(~/powerline-bash.py $?)"
 }
 
 # Poweline style bash prompt!
 export PROMPT_COMMAND="_update_ps1"
+
+# Hibernate to disc on Mac
+function hibernate()
+{
+  local orig_mode=$(pmset -g | grep hibernatemode | awk '{print $2}')
+
+  # Set hibernate to disc mode and sleep
+  sudo pmset -a hibernatemode 25
+  sleep 3
+  pmset -g | grep hibernatemode
+  sudo pmset sleepnow
+
+  # Restore hibernate mode on resume
+  read -p "Press [Enter] to restore hibernate mode to $orig_mode..."
+  sudo pmset -a hibernatemode $orig_mode
+  pmset -g | grep hibernatemode
+}
 
 ##########################################################################
 # Git aliases (with bash completion!)                                    #
