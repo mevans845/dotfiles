@@ -61,7 +61,8 @@ export PROMPT_COMMAND="_update_ps1"
 # Hibernate to disc on Mac
 function hibernate()
 {
-  local orig_mode=$(pmset -g | grep hibernatemode | awk '{print $2}')
+  #local orig_mode=$(pmset -g | grep hibernatemode | awk '{print $2}')
+  local orig_mode=3
 
   # Set hibernate to disc mode and sleep
   sudo pmset -a hibernatemode 25
