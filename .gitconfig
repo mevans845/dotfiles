@@ -1,7 +1,12 @@
 [color]
-    diff = auto
-    status = auto
-    branch = auto
+  diff = auto
+  status = auto
+  branch = auto
 [user]
-    name = Shrey Banga
-    email = banga.shrey@gmail.com
+  name = Shrey Banga
+  email = banga.shrey@gmail.com
+[merge]
+	tool = diffmerge
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
+	trustExitCode = true
