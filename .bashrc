@@ -112,6 +112,7 @@ _make_git_alias gma commit -am
 _make_git_alias gp push
 _make_git_alias gpu pull
 _make_git_alias gr rebase
+_make_git_alias grm rm
 _make_git_alias gs status
 
 # vim as the default editor
