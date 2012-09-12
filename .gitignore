@@ -1,2 +1,14 @@
+# Binaries
+*.o
+*.so
+
+# Java class files
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
 # Vim swap files
 *.swp
