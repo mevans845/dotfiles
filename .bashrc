@@ -66,12 +66,14 @@ function hibernate()
 
   # Set hibernate to disc mode and sleep
   sudo pmset -a hibernatemode 25
-  sleep 3
   pmset -g | grep hibernatemode
-  sudo pmset sleepnow
+
+  #sudo pmset sleepnow
 
   # Restore hibernate mode on resume
-  read -p "Press [Enter] to restore hibernate mode to $orig_mode..."
+  echo "You can close the lid now"
+  sleep 3
+  read -p "Press [Enter] to restore hibernatemode to $orig_mode..."
   sudo pmset -a hibernatemode $orig_mode
   pmset -g | grep hibernatemode
 }
