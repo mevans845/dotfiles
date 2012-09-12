@@ -19,6 +19,7 @@ I implemented a [Powerline](https://github.com/Lokaltog/vim-powerline) like prom
 
 *  Displays the current git branch
 *  Changes color if the last command exited with a failure code
+*  If you're too deep into a directory tree, shortens the displayed path with an ellipsis
 *  It's all done in a Python script, so you could go nuts with it
 
 The .bashrc also has a handy function for adding bash aliases for git commands, without losing bash completion:
