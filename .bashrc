@@ -117,3 +117,7 @@ _make_git_alias gs status
 
 # vim as the default editor
 export EDITOR=vim
+
+# open latex pdfs in default viewer
+# used by "make show" in latex-makefile
+export VIEW_PDF=open
