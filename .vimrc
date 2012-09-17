@@ -50,12 +50,14 @@ map <leader>nt :NERDTreeToggle<cr>
 
 " CtrlP - fuzzyfinder 
 Bundle 'kien/ctrlp.vim'
+let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_map = '<space>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 inoremap <C-space> <Esc>:CtrlPMixed<cr>
 
 " Automatic syntax checking
 Bundle 'scrooloose/syntastic'
+let g:syntastic_cpp_include_dirs = ['/Users/shrey/code/Library/googletest/include']
 
 " tmux inside vim
 Bundle 'benmills/vimux'
