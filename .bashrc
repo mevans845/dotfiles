@@ -2,8 +2,11 @@
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-# Use vi mode for editing commands
-set -o vi
+# Add cpplint to path
+export PATH=~/code/tools/cpplint/:$PATH
+
+# Add mysql bin path
+export PATH=/opt/local/lib/mysql55/bin/:$PATH
 
 function _exists()
 {
