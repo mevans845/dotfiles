@@ -65,6 +65,18 @@ Bundle 'benmills/vimux'
 " Comment/Uncomment quickly
 Bundle 'scrooloose/nerdcommenter'
 
+" Python autocompletion!
+Bundle 'davidhalter/jedi-vim'
+
+" Quickly replace brackets and tags
+Bundle 'tpope/vim-surround'
+
+" Quickly create HTML pages
+Bundle 'mattn/zencoding-vim'
+
+" JSHint
+Bundle 'walm/jshint.vim'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -121,6 +133,11 @@ set tm=500
 
 " Show a column at 81st character
 set colorcolumn=81
+
+" Indentation based folding to hide function bodies quickly
+set foldmethod=indent
+set foldnestmax=2
+set nofoldenable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts

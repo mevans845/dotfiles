@@ -1,0 +1,61 @@
+# Add cpplint to path
+export PATH=~/code/tools/cpplint/:$PATH
+
+# Add mysql bin path
+export PATH=/opt/local/lib/mysql55/bin/:$PATH
+
+function _exists()
+{
+  command -v $1 > /dev/null 2>&1
+  echo "$(( !$? ))"
+}
+
+# Opens files in a single MacVim server.
+# Picks the first server in serverlist if there are multiple servers
+function OpenInMacVim {
+    server=$(mvim --serverlist | head -1)
+    if [ -n "$server" ]; then
+        if [ -z "$1" ]; then
+            osascript -e 'tell application "MacVim" to activate' 
+        else
+            mvim --servername $server --remote-tab $@
+        fi
+    else
+        mvim $@
+    fi
+}
+
+if [[ $(_exists mvim) -ne 0 ]]; then
+    alias vi='OpenInMacVim'
+fi
+
+# vim as the default editor
+export EDITOR=vim
+
+# Hibernate to disc on Mac
+function hibernate()
+{
+  #local orig_mode=$(pmset -g | grep hibernatemode | awk '{print $2}')
+  local orig_mode=3
+
+  # Set hibernate to disc mode and sleep
+  sudo pmset -a hibernatemode 25
+  pmset -g | grep hibernatemode
+
+  #sudo pmset sleepnow
+
+  # Restore hibernate mode on resume
+  echo "You can close the lid now"
+  sleep 3
+  echo -n "Press [Enter] to restore hibernatemode to $orig_mode..."
+  read
+  sudo pmset -a hibernatemode $orig_mode
+  pmset -g | grep hibernatemode
+}
+
+# open latex pdfs in default viewer
+# used by "make show" in latex-makefile
+export VIEW_PDF=open
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

@@ -1,0 +1,12 @@
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Aero-like move and resize
+bind right:ctrl,alt push right bar-resize:screenSizeX/2
+bind left:ctrl,alt  push left  bar-resize:screenSizeX/2
+bind up:alt    chain push up bar-resize:screenSizeY | push right bar-resize:screenSizeX/2 | push left bar-resize:screenSizeX/2
+bind down:alt  push down  bar-resize:screenSizeY
+
+# Window Hints
+bind esc:cmd hint
