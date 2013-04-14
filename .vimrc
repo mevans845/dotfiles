@@ -77,6 +77,11 @@ Bundle 'mattn/zencoding-vim'
 " JSHint
 Bundle 'walm/jshint.vim'
 
+" Table Mode
+Bundle 'godlygeek/tabular'
+Bundle 'dhruvasagar/vim-table-mode'
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -102,8 +107,8 @@ set hid
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-" Ignore case when searching
-set ignorecase
+" Don't ignore case when searching
+set noignorecase
 
 " When searching try to be smart about cases 
 set smartcase
@@ -127,7 +132,7 @@ set mat=2
 
 " No annoying sound on errors
 set noerrorbells
-set novisualbell
+set visualbell " In MacVim, this disables sounds
 set t_vb=
 set tm=500
 
@@ -137,7 +142,8 @@ set colorcolumn=81
 " Indentation based folding to hide function bodies quickly
 set foldmethod=indent
 set foldnestmax=2
-set nofoldenable
+set foldlevelstart=1
+set foldenable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
@@ -181,21 +187,20 @@ set nowb
 " Use spaces instead of tabs
 set expandtab
 
-" Be smart when using tabs ;)
+" Be smart when using tabs
 set smarttab
 
 " 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
 
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
+set nowrap "Don't wrap lines
 
+" Slightly better horizontal scrolling
+set sidescroll=5
+set listchars+=precedes:<,extends:>
 
 """"""""""""""""""""""""""""""
 " Visual mode related

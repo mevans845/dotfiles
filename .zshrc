@@ -9,9 +9,12 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME=""
 
+# Annoying beeps
+setopt NO_BEEP
+
 # Powerline for zsh
 function powerline_precmd() {
-  export PS1="$(~/powerline-bash.py $? --shell zsh)"
+  export PS1="$(~/powerline-shell.py $? --shell zsh)"
 }
 
 function install_powerline_precmd() {

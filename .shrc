@@ -1,3 +1,6 @@
+# Add git alias missed by oh-my-zsh
+alias gs='git status -sb'
+
 # Add cpplint to path
 export PATH=~/code/tools/cpplint/:$PATH
 
@@ -56,6 +59,15 @@ function hibernate()
 # open latex pdfs in default viewer
 # used by "make show" in latex-makefile
 export VIEW_PDF=open
+
+# Color in man pages
+export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking-mode
+export LESS_TERMCAP_md=$'\E[01;38;5;81m'  # begin bold-mode
+export LESS_TERMCAP_me=$'\E[0m'           # end (blinking/bold)-mode
+export LESS_TERMCAP_so=$'\E[38;5;180m'    # begin standout-mode - info box
+export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
+export LESS_TERMCAP_us=$'\E[04;38;5;210m' # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

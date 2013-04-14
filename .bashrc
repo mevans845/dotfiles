@@ -1,4 +1,4 @@
-source .shrc
+source ~/.shrc
 
 # MacPorts Installer addition on 2012-09-03_at_00:20:36: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -32,7 +32,7 @@ fi
 
 function _update_ps1()
 {
-  export PS1="$(~/powerline-bash.py $?)"
+  export PS1="$(~/powerline-shell.py $?)"
 }
 
 # Poweline style bash prompt!
