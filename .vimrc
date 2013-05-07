@@ -137,7 +137,9 @@ set t_vb=
 set tm=500
 
 " Show a column at 81st character
-set colorcolumn=81
+if exists('+colorcolumn')
+  set colorcolumn=81
+endif
 
 " Indentation based folding to hide function bodies quickly
 set foldmethod=indent
