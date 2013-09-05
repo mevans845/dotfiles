@@ -2,11 +2,51 @@ config defaultToCurrentScreen true
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
 
-# Aero-like move and resize
-bind right:ctrl,alt push right bar-resize:screenSizeX/2
-bind left:ctrl,alt  push left  bar-resize:screenSizeX/2
-bind up:alt    chain push up bar-resize:screenSizeY | push right bar-resize:screenSizeX/2 | push left bar-resize:screenSizeX/2
-bind down:alt  push down  bar-resize:screenSizeY
+alias W screenSizeX
+alias W_2 ${W}/2
+alias W_3 ${W}/3
+alias H screenSizeY
+alias H_2 ${H}/2
 
-# Window Hints
-bind esc:cmd hint
+# dev_big
+#  / Chrome \--- / Vim \--- / iTerm \---
+#  |            |          |            |
+#  |            |          |            |
+#  `------------^----------^------------'
+alias WW ${W_3}
+alias winsize ${WW};${H}
+
+layout dev_big 'Google Chrome' move 0;0       ${winsize}
+layout dev_big 'MacVim'        move ${WW};0   ${winsize}
+layout dev_big 'iTerm'         move 2*${WW};0 ${winsize}
+layout dev_big 'HipChat'       throw 1 resize
+
+# dev
+#  / Vim \----------- / iTerm \--------
+#  |                 |                 |
+#  |                 |                 |
+#  `-----------------^-----------------'
+alias WW ${W_2}
+alias winsize ${WW};${H}
+
+layout dev 'Google Chrome' move 0;0           ${winsize}
+layout dev 'MacVim'        move 0;0           ${winsize}
+layout dev 'iTerm'         move ${WW};0       ${winsize}
+layout dev 'HipChat'       move ${W_2};${H_2} ${W_2};${H_2} 0
+
+default dev_big count:2
+default dev count:1
+
+# Aero-like move and resize
+bind up:alt          chain push up bar-resize:screenSizeY | push left bar-resize:screenSizeX/2 | push right bar-resize:screenSizeX/2
+bind down:alt        chain push down bar-resize:screenSizeY/2 | push up bar-resize:screenSizeY/2
+bind left:alt,ctrl   push left bar-resize:screenSizeX/2
+bind right:alt,ctrl  push right bar-resize:screenSizeX/2
+
+bind 1:alt move 0;0 screenSizeX/3;screenSizeY
+bind 2:alt move screenSizeX/3;0 screenSizeX/3;screenSizeY
+bind 3:alt move 2*screenSizeX/3;0 screenSizeX/3;screenSizeY
+
+bind 1:ctrl,cmd layout dev_big
+bind 2:ctrl,cmd layout dev
+bind r:ctrl,cmd relaunch
