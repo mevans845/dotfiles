@@ -35,6 +35,9 @@ Bundle 'gmarik/vundle'
 " Solarized color scheme
 Bundle 'altercation/vim-colors-solarized'
 
+" Custom muted color scheme
+Bundle 'milkbikis/vim-muted'
+
 " Fancy status lines!
 Bundle 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
@@ -44,43 +47,64 @@ Bundle 'scrooloose/nerdtree'
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeIgnore=['\.so$', '\.class$', '\.swp']
-" Open NERDTree if no files specified
-autocmd vimenter * if !argc() | NERDTree | endif
 map <leader>nt :NERDTreeToggle<cr>
 
-" CtrlP - fuzzyfinder 
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_map = '<space>'
-let g:ctrlp_cmd = 'CtrlPMixed'
-inoremap <C-space> <Esc>:CtrlPMixed<cr>
+Bundle 'wincent/Command-T'
+let g:CommandTMaxHeight = 10
+let g:CommandTMaxFiles = 1000000
+let g:CommandTMatchWindowReverse = 1
+"let g:CommandTInputDebounce = 200
+let g:CommandTFileScanner = 'watchman'
+nnoremap <silent> <space> :CommandT<CR>
+nnoremap <silent> <M-space> :CommandTMRU<CR>
 
 " Automatic syntax checking
 Bundle 'scrooloose/syntastic'
-let g:syntastic_cpp_include_dirs = ['/Users/shrey/code/Library/googletest/include']
+
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_python_checkers = ['qlint']
+let g:syntastic_html_checkers=[]
+let g:syntastic_enable_balloons = 0
+
+" PEP8 compatible indentation
+Bundle 'hynek/vim-python-pep8-indent'
 
 " tmux inside vim
-Bundle 'benmills/vimux'
+" Bundle 'benmills/vimux'
 
 " Comment/Uncomment quickly
 Bundle 'scrooloose/nerdcommenter'
 
 " Python autocompletion!
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 
 " Quickly replace brackets and tags
 Bundle 'tpope/vim-surround'
 
 " Quickly create HTML pages
-Bundle 'mattn/zencoding-vim'
+" Bundle 'mattn/zencoding-vim'
 
 " JSHint
-Bundle 'walm/jshint.vim'
+" Bundle 'walm/jshint.vim'
 
 " Table Mode
-Bundle 'godlygeek/tabular'
-Bundle 'dhruvasagar/vim-table-mode'
+" Bundle 'godlygeek/tabular'
+" Bundle 'dhruvasagar/vim-table-mode'
 
+" Git
+"Bundle 'tpope/vim-fugitive'
+
+" Rope refactoring library
+"Bundle 'python-rope/ropevim'
+
+" Auto save sessions
+"Bundle 'tpope/vim-obsession'
+
+" List of tags in current file etc.
+Bundle 'vim-scripts/taglist.vim'
+
+" Dash.app
+Plugin 'rizzatti/dash.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM user interface
@@ -136,11 +160,6 @@ set visualbell " In MacVim, this disables sounds
 set t_vb=
 set tm=500
 
-" Show a column at 81st character
-if exists('+colorcolumn')
-  set colorcolumn=81
-endif
-
 " Indentation based folding to hide function bodies quickly
 set foldmethod=indent
 set foldnestmax=2
@@ -160,11 +179,10 @@ if has("gui_running")
     set guioptions-=T
     set guioptions+=e
     set t_Co=256
-    set guitablabel=%M\ %t
+    set guitablabel=%-.20f\ %M
 
-    colorscheme solarized
+    colorscheme muted
     set guifont=Monaco:h14
-    set background=light
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -180,7 +198,7 @@ set ffs=unix,dos,mac
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
-"set noswapfile
+set noswapfile
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -193,8 +211,8 @@ set expandtab
 set smarttab
 
 " 1 tab == 2 spaces
-set shiftwidth=2
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 
 set ai "Auto indent
 set si "Smart indent
@@ -241,6 +259,15 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
+map <D-1> :tabnext 1<cr>
+map <D-2> :tabnext 2<cr>
+map <D-3> :tabnext 3<cr>
+map <D-4> :tabnext 4<cr>
+map <D-5> :tabnext 5<cr>
+map <D-6> :tabnext 6<cr>
+map <D-7> :tabnext 7<cr>
+map <D-8> :tabnext 8<cr>
+map <D-9> :tablast<cr>
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
@@ -263,7 +290,6 @@ autocmd BufReadPost *
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
-
 
 """"""""""""""""""""""""""""""
 " Status line
@@ -294,13 +320,16 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+" Delete trailing whitespace on save
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.css :call DeleteTrailingWS()
+autocmd BufWrite *.less :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 
@@ -311,55 +340,18 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+"map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+"map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>co :botright cope<cr>
+map <leader>cx :cclose<cr>
 map <leader>] :cn<cr>
 map <leader>[ :cp<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-" Quickly open a buffer for scripbble
-map <leader>q :e ~/buffer<cr>
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

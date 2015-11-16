@@ -15,11 +15,17 @@ alias H_2 ${H}/2
 #  `------------^----------^------------'
 alias WW ${W_3}
 alias winsize ${WW};${H}
+alias shortwin ${WW};${H}*0.8
+alias widewin ${WW}*2;${H}
+alias browser move 0;0 ${shortwin} | move ${WW};0 ${shortwin}
+alias devtools move ${WW};0 ${shortwin}
 
-layout dev_big 'Google Chrome' move 0;0       ${winsize}
-layout dev_big 'MacVim'        move ${WW};0   ${winsize}
-layout dev_big 'iTerm'         move 2*${WW};0 ${winsize}
-layout dev_big 'HipChat'       throw 1 resize
+layout dev_big 'Google Chrome'   ${browser}
+layout dev_big 'Firefox'         ${browser}
+layout dev_big 'Safari'          ${browser}
+layout dev_big 'iTerm'           move 0;0       ${winsize}
+layout dev_big 'MacVim'          move ${WW};0   ${widewin}
+layout dev_big 'Slack'               move 2*${WW};${H_2} ${WW};${H_2}
 
 # dev
 #  / Vim \----------- / iTerm \--------
@@ -28,13 +34,16 @@ layout dev_big 'HipChat'       throw 1 resize
 #  `-----------------^-----------------'
 alias WW ${W_2}
 alias winsize ${WW};${H}
+alias shortwin ${WW};${H}*0.8
 
-layout dev 'Google Chrome' move 0;0           ${winsize}
-layout dev 'MacVim'        move 0;0           ${winsize}
-layout dev 'iTerm'         move ${WW};0       ${winsize}
-layout dev 'HipChat'       move ${W_2};${H_2} ${W_2};${H_2} 0
+layout dev 'Google Chrome' move 0;0           ${shortwin}
+layout dev 'Firefox'       move 0;0           ${shortwin}
+layout dev 'Safari'        move 0;0           ${shortwin}
+layout dev 'iTerm'         move 0;0           ${winsize}
+layout dev 'MacVim'        move ${WW};0       ${winsize}
+layout dev 'Slack'         move ${W_2};${H_2} ${W_2};${H_2} 0
 
-default dev_big count:2
+default dev count:2
 default dev count:1
 
 # Aero-like move and resize

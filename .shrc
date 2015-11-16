@@ -19,7 +19,7 @@ function OpenInMacVim {
     server=$(mvim --serverlist | head -1)
     if [ -n "$server" ]; then
         if [ -z "$1" ]; then
-            osascript -e 'tell application "MacVim" to activate' 
+            osascript -e 'tell application "MacVim" to activate'
         else
             mvim --servername $server --remote-tab $@
         fi
@@ -35,31 +35,6 @@ fi
 # vim as the default editor
 export EDITOR=vim
 
-# Hibernate to disc on Mac
-function hibernate()
-{
-  #local orig_mode=$(pmset -g | grep hibernatemode | awk '{print $2}')
-  local orig_mode=3
-
-  # Set hibernate to disc mode and sleep
-  sudo pmset -a hibernatemode 25
-  pmset -g | grep hibernatemode
-
-  #sudo pmset sleepnow
-
-  # Restore hibernate mode on resume
-  echo "You can close the lid now"
-  sleep 3
-  echo -n "Press [Enter] to restore hibernatemode to $orig_mode..."
-  read
-  sudo pmset -a hibernatemode $orig_mode
-  pmset -g | grep hibernatemode
-}
-
-# open latex pdfs in default viewer
-# used by "make show" in latex-makefile
-export VIEW_PDF=open
-
 # Color in man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking-mode
 export LESS_TERMCAP_md=$'\E[01;38;5;81m'  # begin bold-mode
@@ -68,6 +43,3 @@ export LESS_TERMCAP_so=$'\E[38;5;180m'    # begin standout-mode - info box
 export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_us=$'\E[04;38;5;210m' # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
