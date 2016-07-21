@@ -3,6 +3,9 @@ export PATH=$PATH:$HOME/quip/bin
 alias dd="docker-devel"
 alias pi="ipython -i $HOME/quip/bin/interactive"
 alias pp="git pull && git push"
+alias ghash='echo https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h") | pbcopy'
+alias ggo='open https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h")'
 
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="cpp"
 export DISABLE_WV2=1
+ulimit -n 4096

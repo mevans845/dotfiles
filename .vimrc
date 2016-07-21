@@ -10,10 +10,6 @@ set clipboard=unnamed
 " Sets how many lines of history VIM has to remember
 set history=700
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
 let mapleader = ","
@@ -29,7 +25,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" required
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " Solarized color scheme
@@ -63,7 +59,7 @@ Plugin 'scrooloose/syntastic'
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args='--ignore=F841,F821,F401,E129,E128,E127,E125,W291,N802,N806,E901,E228 --max-line-length=80'
+let g:syntastic_python_flake8_post_args='--ignore=F841,F401,E129,E128,E127,E125,N802,N806,E228 --max-line-length=80 --builtins=run,finish,write_task'
 let g:syntastic_html_checkers=[]
 let g:syntastic_enable_balloons = 0
 
@@ -79,14 +75,24 @@ Plugin 'tpope/vim-surround'
 " Git
 Plugin 'tpope/vim-fugitive'
 
-" Rope refactoring library
-"Plugin 'python-rope/ropevim'
+" List of tags in current file etc.
+"Plugin 'vim-scripts/taglist.vim'
 
-" React syntax highlighting
-"Plugin 'mxw/vim-jsx'
+" Generate JSDoc comments quickly
+Plugin 'heavenshell/vim-jsdoc'
+
+" Javascript highlighting, indenting
+Plugin 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc = 1
+
+" Indent
+Plugin 'nathanaelkane/vim-indent-guides.git'
 
 call vundle#end()
-filetype plugin indent on
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM user interface
@@ -165,6 +171,7 @@ if has("gui_running")
 
     colorscheme muted
     set guifont=Monaco:h12
+    set guifont=Monaco\ for\ Powerline:h12
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -279,9 +286,10 @@ set viminfo^=%
 " Always show the status line
 set laststatus=2
 
-" Format the status line
-set statusline=%#DiffDelete#\ %f\ %#DiffAdd#%m%r%h\ %w\ %y\ %=Line:\ %l\ Column:\ %c\ 
-
+" Powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editing mappings
@@ -314,7 +322,12 @@ autocmd BufWrite *.jsx :call DeleteTrailingWS()
 autocmd BufWrite *.css :call DeleteTrailingWS()
 autocmd BufWrite *.less :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.proto :call DeleteTrailingWS()
+autocmd BufWrite *.java :call DeleteTrailingWS()
 
+" Highlight lines longer than 80 chars
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimgrep searching and cope displaying
@@ -331,11 +344,11 @@ vnoremap <silent> gv :call VisualSelection('gv')<CR>
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
-map <leader>co :botright cope<cr>
-map <leader>cx :cclose<cr>
-map <leader>] :cn<cr>
-map <leader>[ :cp<cr>
+map <leader><space> :80vsp<CR>
 
+" Show column at 81 characters
+"set colorcolumn=81
+"highlight ColorColumn guibg=#2a2a2a
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Helper functions

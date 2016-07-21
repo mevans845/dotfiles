@@ -9,7 +9,7 @@ export HISTIGNORE="ls:pwd:exit"
 # File navigation aliases
 alias ..='cd ..'
 alias _='cd -'
-alias ls='ls -hF -G --color'  # add colors for filetype recognition
+alias ls='ls -hF -G'  # add colors for filetype recognition
 alias ll='ls -l -h'
 alias la='ls -A'
 alias du='du -kh' 
@@ -31,8 +31,10 @@ function _update_ps1()
   export PS1="$(~/powerline-shell.py $?)"
 }
 
+export PS1="\w "
+
 # Poweline style bash prompt!
-export PROMPT_COMMAND="_update_ps1"
+# export PROMPT_COMMAND="_update_ps1"
 
 ##########################################################################
 # Git aliases (with bash completion!)                                    #
@@ -59,6 +61,7 @@ _make_git_alias g1 log --oneline
 _make_git_alias ga add
 _make_git_alias gb branch
 _make_git_alias gc commit
+_make_git_alias gco checkout
 _make_git_alias gcm commit -m
 _make_git_alias gca commit -am
 _make_git_alias gcl clone
