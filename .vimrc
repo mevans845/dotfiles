@@ -26,30 +26,30 @@ nmap <leader>w :w!<cr>
 " Vundle
 """"""""""
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " required
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Solarized color scheme
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 " Custom muted color scheme
-Bundle 'milkbikis/vim-muted'
+Plugin 'milkbikis/vim-muted'
 
 " Fancy status lines!
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-powerline'
 let g:Powerline_symbols = 'fancy'
 
 " File system explorer, bookmarks etc.
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMinimalUI=1
 let g:NERDTreeIgnore=['\.so$', '\.class$', '\.swp']
 map <leader>nt :NERDTreeToggle<cr>
 
-Bundle 'wincent/Command-T'
+Plugin 'wincent/Command-T'
 let g:CommandTMaxHeight = 10
 let g:CommandTMaxFiles = 1000000
 let g:CommandTMatchWindowReverse = 1
@@ -59,52 +59,34 @@ nnoremap <silent> <space> :CommandT<CR>
 nnoremap <silent> <M-space> :CommandTMRU<CR>
 
 " Automatic syntax checking
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_python_checkers = ['qlint']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_post_args='--ignore=F841,F821,F401,E129,E128,E127,E125,W291,N802,N806,E901,E228 --max-line-length=80'
 let g:syntastic_html_checkers=[]
 let g:syntastic_enable_balloons = 0
 
 " PEP8 compatible indentation
-Bundle 'hynek/vim-python-pep8-indent'
-
-" tmux inside vim
-" Bundle 'benmills/vimux'
+Plugin 'hynek/vim-python-pep8-indent'
 
 " Comment/Uncomment quickly
-Bundle 'scrooloose/nerdcommenter'
-
-" Python autocompletion!
-"Bundle 'davidhalter/jedi-vim'
+Plugin 'scrooloose/nerdcommenter'
 
 " Quickly replace brackets and tags
-Bundle 'tpope/vim-surround'
-
-" Quickly create HTML pages
-" Bundle 'mattn/zencoding-vim'
-
-" JSHint
-" Bundle 'walm/jshint.vim'
-
-" Table Mode
-" Bundle 'godlygeek/tabular'
-" Bundle 'dhruvasagar/vim-table-mode'
+Plugin 'tpope/vim-surround'
 
 " Git
-"Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Rope refactoring library
-"Bundle 'python-rope/ropevim'
+"Plugin 'python-rope/ropevim'
 
-" Auto save sessions
-"Bundle 'tpope/vim-obsession'
+" React syntax highlighting
+"Plugin 'mxw/vim-jsx'
 
-" List of tags in current file etc.
-Bundle 'vim-scripts/taglist.vim'
-
-" Dash.app
-Plugin 'rizzatti/dash.vim'
+call vundle#end()
+filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM user interface
@@ -182,7 +164,7 @@ if has("gui_running")
     set guitablabel=%-.20f\ %M
 
     colorscheme muted
-    set guifont=Monaco:h14
+    set guifont=Monaco:h12
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -328,6 +310,7 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.js :call DeleteTrailingWS()
+autocmd BufWrite *.jsx :call DeleteTrailingWS()
 autocmd BufWrite *.css :call DeleteTrailingWS()
 autocmd BufWrite *.less :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
@@ -384,4 +367,4 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
-
+source ~/.quip.vimrc

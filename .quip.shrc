@@ -1,0 +1,8 @@
+export PATH=$PATH:$HOME/quip/bin
+
+alias dd="docker-devel"
+alias pi="ipython -i $HOME/quip/bin/interactive"
+alias pp="git pull && git push"
+
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="cpp"
+export DISABLE_WV2=1
