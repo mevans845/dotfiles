@@ -42,7 +42,7 @@ let g:Powerline_symbols = 'fancy'
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeMinimalUI=1
-let g:NERDTreeIgnore=['\.so$', '\.class$', '\.swp', '\.pyc']
+let g:NERDTreeIgnore=['\.so$', '\.class$', '\.swp', '\.pyc', '\.pb.cc', '\.pb.h']
 map <leader>nt :NERDTreeToggle<cr>
 
 Plugin 'wincent/Command-T'
