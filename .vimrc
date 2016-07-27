@@ -57,9 +57,6 @@ nnoremap <silent> <M-space> :CommandTMRU<CR>
 " Automatic syntax checking
 Plugin 'scrooloose/syntastic'
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args='--ignore=F841,F401,E129,E128,E127,E125,N802,N806,E228 --max-line-length=80 --builtins=run,finish,write_task'
 let g:syntastic_html_checkers=[]
 let g:syntastic_enable_balloons = 0
 
