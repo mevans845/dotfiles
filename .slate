@@ -25,7 +25,7 @@ layout dev_big 'Firefox'         ${browser}
 layout dev_big 'Safari'          ${browser}
 layout dev_big 'iTerm2'          move screenOriginX;screenOriginY                      ${W_3};${H}
 layout dev_big 'MacVim'          move screenOriginX+${WW};screenOriginY                ${widewin}
-layout dev_big 'Quip'            move screenOriginX+${W_2};screenOriginY+${H_2}        ${W_2};${H_2}
+layout dev_big 'Quip'            move screenOriginX+${W_3};screenOriginY+${H_2}        ${W_2};${H_2}
 
 # dev
 #  / Vim \----------- / iTerm \--------
