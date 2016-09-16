@@ -1,7 +1,7 @@
 export PATH=$PATH:$HOME/quip/bin
 
 alias dd="docker-devel"
-alias pi="ipython -i $HOME/quip/bin/interactive"
+alias pi="docker-devel ipy"
 alias pp="git pull && git push"
 alias ghash='echo https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h") | pbcopy'
 alias ggo='open https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h")'
