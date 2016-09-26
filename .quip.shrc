@@ -9,6 +9,7 @@ alias ggo='open https://github.com/quip/quip/commit/$(git log -n 1 --pretty=form
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="cpp"
 export DISABLE_WV2=1
 export DISABLE_MACROS=1
+export BLAZE=1
 ulimit -n 4096
 
 cd quip
