@@ -54,3 +54,6 @@ export PATH="$PATH":~/quip/android/tools
 include '$HOME/code/google-cloud-sdk/path.zsh.inc'
 # The next line enables shell command completion for gcloud.
 include '$HOME/code/google-cloud-sdk/completion.zsh.inc'
+
+# Yarn
+export PATH="$HOME/.yarn/bin:$PATH"
