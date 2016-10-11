@@ -1,7 +1,12 @@
 cd ~/quip
 source settings/vim/quip.vim
 map <leader>f :call FindDefinition()<cr>
-map <leader>m :Grr <cword><cr>
+map <leader>m :Z <cword><cr>
+map <leader>nj :Zj <cword><cr>
+map <leader>ns :Zs <cword><cr>
+map <leader>nc :Zc <cword><cr>
+map <leader>ni :Zi <cword><cr>
+map <leader>na :Za <cword><cr>
 map <leader><space> :80vsp<cr>
 
 let g:syntastic_javascript_checkers = ['eslint']
