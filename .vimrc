@@ -85,6 +85,11 @@ let g:javascript_plugin_jsdoc = 1
 " Indent
 Plugin 'nathanaelkane/vim-indent-guides.git'
 
+" Autocompletion
+Plugin 'Valloric/YouCompleteMe'
+"let g:ycm_python_binary_path="/usr/local/bin/python3"
+let g:ycm_collect_identifiers_from_tags_files=1
+
 call vundle#end()
 
 " Enable filetype plugins
