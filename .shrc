@@ -5,7 +5,7 @@ function include () {
 include ".quip.shrc"
 
 export JAVA_HOME="`/usr/libexec/java_home -v '1.7*'`"
-export PATH=$PATH:$HOME/go_appengine/:/usr/local/mysql/bin/
+export PATH=$PATH:$HOME/go_appengine:/usr/local/mysql/bin:/usr/local/sbin
 export GOPATH=$HOME/code/go-workspace
 
 function _exists() {
@@ -32,8 +32,8 @@ if [[ $(_exists mvim) -ne 0 ]]; then
     alias vi='OpenInMacVim'
 fi
 
-# vim as the default editor
-export EDITOR=vim
+# subl as the default editor
+export EDITOR='subl -w'
 
 # Color in man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking-mode
