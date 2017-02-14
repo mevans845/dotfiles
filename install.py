@@ -1,11 +1,20 @@
 import os
+import sys
 
-RCFILES = [".shrc", ".zshrc", ".vimrc", ".quip.shrc", ".quip.vimrc", ".slate"]
+RCFILES = [".shrc", ".zshrc", ".vimrc", ".quip.shrc", ".quip.vimrc", ".slate.js"]
+DELFILES = [".slate"]
 
 
 def main():
     home = os.getenv("HOME")
     src_dir = os.path.dirname(os.path.abspath(__file__))
+
+    for filename in DELFILES:
+        path = os.path.join(home, filename)
+        if os.path.exists(path):
+            if raw_input("%s should be deleted. Continue? [y/N]: " % path) != "y":
+                sys.exit(1)
+            os.remove(path)
 
     for filename in RCFILES:
         path = os.path.join(home, filename)
