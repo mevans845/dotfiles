@@ -45,10 +45,11 @@ export LESS_TERMCAP_us=$'\E[04;38;5;210m' # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 
 # Android mappings
-export PATH="$PATH":~/android-sdk-macosx/tools:
-export PATH="$PATH":~/android-sdk-macosx/platform-tools:
+export PATH="$PATH":~/android-sdk-macosx/tools
+export PATH="$PATH":~/android-sdk-macosx/platform-tools
 export PATH="$PATH":~/android-ndk-r10d
 export PATH="$PATH":~/quip/android/tools
+export ANDROID_NDK="${HOME}/android-ndk-r10d/"
 
 # The next line updates PATH for the Google Cloud SDK.
 include '$HOME/code/google-cloud-sdk/path.zsh.inc'
