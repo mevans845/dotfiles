@@ -11,13 +11,17 @@ function setupCommon() {
     "width" : "screenSizeX",
     "height" : "screenSizeY"
   });
-  var grow = slate.operation("resize", {
-    "width": "+10%",
-    "height": "+10%"
+  var grow = slate.operation("move", {
+    "x": "max({0, windowTopLeftX - windowSizeX * 0.05})",
+    "y": "max({0, windowTopLeftY - windowSizeY * 0.05})",
+    "width": "min({screenSizeX, windowSizeX * 1.1})",
+    "height": "min({screenSizeY, windowSizeY * 1.1})"
   });
-  var shrink = slate.operation("resize", {
-    "width": "-10%",
-    "height": "-10%"
+  var shrink = slate.operation("move", {
+    "x": "windowTopLeftX + windowSizeX * 0.05",
+    "y": "windowTopLeftY + windowSizeY * 0.05",
+    "width": "windowSizeX * 0.9",
+    "height": "windowSizeY * 0.9"
   });
   var pushRight = slate.operation("push", {
     "direction" : "right",
@@ -30,23 +34,11 @@ function setupCommon() {
   var allOps = slate.operation("chain", {
     "operations": [fullScreen, pushRight, pushLeft]
   })
-  var focusBrowser = slate.operation("focus", {
-    "app": "Google Chrome"
-  });
-  var hideAllButBrowser = slate.operation("hide", {
-    "app": "all-but:'Google Chrome'"
-  });
   var moveCenter = slate.operation("move", {
-    "x": "screenOriginX + screenSizeX/4",
-    "y": "screenOriginY",
-    "width": "screenSizeX/2",
-    "height": "screenSizeY"
-  });
-  var readMode = slate.operation("sequence", {
-    "operations": [
-      [focusBrowser],
-      [moveCenter, hideAllButBrowser]
-    ]
+    "x": "screenOriginX + screenSizeX * 0.1",
+    "y": "screenOriginY + screenSizeY * 0.05",
+    "width": "screenSizeX * 0.8",
+    "height": "screenSizeY * 0.9"
   });
 
   // Bindings
@@ -65,9 +57,13 @@ function setupCommon() {
   slate.bind("-:alt,ctrl", function(win) {
     win.doOperation(shrink);
   });
-  slate.bind("r:alt,ctrl", function(win) {
-    win.doOperation(readMode);
-  })
+  slate.bind("o:alt,ctrl", function(win) {
+    var appName = win.app().name();
+    win.doOperation("hide", {
+      "app": "all-but:'" + appName + "'"
+    });
+    win.doOperation(moveCenter);
+  });
 }
 
 function createLayout(name, pushRight, pushLeft, moveTopLeft, moveMiddle, moveMini) {
@@ -160,6 +156,12 @@ function setupSmall() {
 
   slate.bind("2:cmd,ctrl", function(win) {
     win.doOperation(slate.operation("layout", {"name": layoutSmall}));
+  });
+  slate.bind("1:alt", function(win) {
+    win.doOperation(pushLeft);
+  });
+  slate.bind("2:alt", function(win) {
+    win.doOperation(pushRight);
   });
 }
 
