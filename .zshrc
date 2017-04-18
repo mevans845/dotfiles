@@ -12,6 +12,10 @@ ZSH_THEME="clean"
 # Annoying beeps
 setopt NO_BEEP
 
+# Alt-back and forward to skip over words
+bindkey '[D' backward-word
+bindkey '[C' forward-word
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
