@@ -126,7 +126,7 @@ function setupBig() {
   var moveMini = slate.operation("move", {
     "x": "screenOriginX + screenSizeX/3",
     "y": "screenOriginX + screenSizeY/2",
-    "width" : "screenSizeX/3",
+    "width" : "screenSizeX/2",
     "height" : "screenSizeY/2"
   });
 
