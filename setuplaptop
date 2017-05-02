@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+# Install apps using Homebrew
+brew bundle
+
+# Install oh-my-zsh
+if [ ! -e ~/.oh-my-zsh ]; then
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+# Setup Sublime Text 3 syncing
+pushd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/ && ln -sF ~/Dropbox/Sublime/User && popd
+
+python install-dotfiles.py
+
+echo "
+===================
+ Install complete!
+===================
+Now you need to:
+- Setup ssh keys
+- Install 1Password
+- Change default shell to zsh
+- Sign-in to Dropbox
+- Set iTerm2 to load preferences from ~/Dropbox/iTerm2
+- Activate Alfred, Sublime Text, 1Password
+- Apply changes to git plugin in ~/.oh-my-zsh from previous laptop
+"
