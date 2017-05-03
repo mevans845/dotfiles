@@ -8,6 +8,7 @@ tap 'homebrew/services'
 
 brew 'cask'
 brew 'dnsmasq'
+brew 'hub'
 brew 'nmap'
 brew 'node'
 brew 'terminal-notifier'

@@ -3,8 +3,8 @@ export PATH=$PATH:$HOME/quip/bin
 alias dd="docker-devel"
 alias pi="docker-devel ipy"
 alias pp="git pull && git push"
-alias ghash='echo https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h") | pbcopy'
-alias ggo='open https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h")'
+alias ghash='echo -n https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h") | pbcopy'
+alias ggo='hub browse -- commit/$(git log -n 1 --pretty=format:"%h")'
 alias glme="git log --author=shrey"
 
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="cpp"
