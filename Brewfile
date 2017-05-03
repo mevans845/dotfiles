@@ -32,4 +32,5 @@ cask 'sublime-text'
 cask 'vlc'
 
 brew 'mas'
-mas 'Xcode', id: 497799835
+# Seems to get stuck forever and conflict with something else
+# mas 'Xcode', id: 497799835
