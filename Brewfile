@@ -7,6 +7,7 @@ tap 'caskroom/fonts'
 tap 'homebrew/services'
 
 brew 'cask'
+brew 'codemod'
 brew 'dnsmasq'
 brew 'flake8'
 brew 'hub'
