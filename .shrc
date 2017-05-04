@@ -4,7 +4,6 @@ function include () {
 
 include ".quip.shrc"
 
-export JAVA_HOME="`/usr/libexec/java_home -v '1.7*'`"
 export PATH=$PATH:$HOME/go_appengine:/usr/local/mysql/bin:/usr/local/sbin
 export GOPATH=$HOME/code/go-workspace
 

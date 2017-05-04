@@ -8,6 +8,7 @@ tap 'homebrew/services'
 
 brew 'cask'
 brew 'dnsmasq'
+brew 'flake8'
 brew 'hub'
 brew 'nmap'
 brew 'node'
