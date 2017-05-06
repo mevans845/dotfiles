@@ -20,6 +20,7 @@ brew 'zsh'
 brew 'zsh-completions'
 
 cask 'alfred'
+cask 'google-chrome'
 cask 'dash'
 cask 'docker'
 cask 'dropbox'
