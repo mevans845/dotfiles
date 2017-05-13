@@ -12,16 +12,16 @@ function setupCommon() {
     "height" : "screenSizeY"
   });
   var grow = slate.operation("move", {
-    "x": "max({0, windowTopLeftX - windowSizeX * 0.05})",
-    "y": "max({0, windowTopLeftY - windowSizeY * 0.05})",
-    "width": "min({screenSizeX, windowSizeX * 1.1})",
-    "height": "min({screenSizeY, windowSizeY * 1.1})"
+    "x": "max({0, windowTopLeftX - windowSizeX * 0.5 * 0.2})",
+    "y": "max({0, windowTopLeftY - windowSizeY * 0.5 * 0.1})",
+    "width": "min({screenSizeX, windowSizeX * (1 + 0.2)})",
+    "height": "min({screenSizeY, windowSizeY * (1 + 0.1)})"
   });
   var shrink = slate.operation("move", {
-    "x": "windowTopLeftX + windowSizeX * 0.05",
-    "y": "windowTopLeftY + windowSizeY * 0.05",
-    "width": "windowSizeX * 0.9",
-    "height": "windowSizeY * 0.9"
+    "x": "windowTopLeftX + windowSizeX * 0.5 * 0.2",
+    "y": "windowTopLeftY + windowSizeY * 0.5 * 0.1",
+    "width": "windowSizeX * (1 - 0.2)",
+    "height": "windowSizeY * (1 - 0.1)"
   });
   var pushRight = slate.operation("push", {
     "direction" : "right",
