@@ -42,6 +42,19 @@ cask 'spotify'
 cask 'sublime-text'
 cask 'vlc'
 
+# QuickLook plugins
+cask 'qlcolorcode'
+cask 'qlstephen'
+cask 'qlmarkdown'
+cask 'quicklook-json'
+cask 'qlprettypatch'
+cask 'quicklook-csv'
+cask 'betterzipql'
+cask 'qlimagesize'
+cask 'webpquicklook'
+cask 'suspicious-package'
+cask 'qlvideo'
+
 brew 'mas'
 # Seems to get stuck forever and conflict with something else
 # mas 'Xcode', id: 497799835
