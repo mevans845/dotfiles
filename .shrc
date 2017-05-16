@@ -4,6 +4,11 @@ function include () {
 
 include ".quip.shrc"
 
+alias ggo='hub browse -- commit/$(git log -n 1 --pretty=format:"%h")'
+alias pp="git pull && git push"
+alias glme="git log --author=shrey"
+alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+
 export PATH=$PATH:$HOME/go_appengine:/usr/local/mysql/bin:/usr/local/sbin
 export GOPATH=$HOME/code/go-workspace
 
