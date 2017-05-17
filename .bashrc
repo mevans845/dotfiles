@@ -1,3 +1,5 @@
+#!/bin/sh
+
 source ~/.shrc
 
 # Better history
@@ -12,7 +14,7 @@ alias _='cd -'
 alias ls='ls -hF -G'  # add colors for filetype recognition
 alias ll='ls -l -h'
 alias la='ls -A'
-alias du='du -kh' 
+alias du='du -kh'
 alias df='df -kTh'
 
 # Colored output in grep

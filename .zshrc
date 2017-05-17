@@ -1,3 +1,5 @@
+#!/bin/sh
+
 source ~/.shrc
 
 # Path to your oh-my-zsh configuration.
