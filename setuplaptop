@@ -7,4 +7,4 @@ which -s brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.co
 which -s python3 || brew install python3
 
 # Use python script to install the rest
-python3 install-dotfiles.py
+python3 install.py
