@@ -1,38 +1,10 @@
 #!/bin/sh
 
-set -e
-BASE_DIR=$(pwd)
-OH_MY_ZSH="$HOME/.oh-my-zsh"
+# Install brew if needed
+which -s brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# Install apps using Homebrew
-brew bundle
+# Install python3 if needed
+which -s python3 || brew install python3
 
-# Install oh-my-zsh
-if [ ! -e "$OH_MY_ZSH" ]; then
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
-
-# Link to custom oh-my-zsh git plugins
-if [ ! -e "$OH_MY_ZSH/custom/plugins/git" ]; then
-    ln -sF "$BASE_DIR/zsh/custom/plugins/git" "$OH_MY_ZSH/custom/plugins"
-    ln -sF "$BASE_DIR/zsh/custom/plugins/gitfast" "$OH_MY_ZSH/custom/plugins"
-fi
-
-# Setup Sublime Text 3 syncing
-pushd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/ && ln -sF ~/Dropbox/Sublime/User && popd
-
-# Install symlinks to dotfiles
-python install-dotfiles.py
-
-echo "
-===================
- Install complete!
-===================
-Now you need to:
-- Setup ssh keys
-- Install 1Password
-- Change default shell to zsh
-- Sign-in to Dropbox
-- Set iTerm2 to load preferences from ~/Dropbox/iTerm2
-- Activate Alfred, Sublime Text, 1Password
-"
+# Use python script to install the rest
+python3 install-dotfiles.py
