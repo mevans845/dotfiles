@@ -1,18 +1,27 @@
 #!/bin/sh
 
 set -e
+BASE_DIR=$(pwd)
+OH_MY_ZSH="$HOME/.oh-my-zsh"
 
 # Install apps using Homebrew
 brew bundle
 
 # Install oh-my-zsh
-if [ ! -e ~/.oh-my-zsh ]; then
+if [ ! -e "$OH_MY_ZSH" ]; then
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+# Link to custom oh-my-zsh git plugins
+if [ ! -e "$OH_MY_ZSH/custom/plugins/git" ]; then
+    ln -sF "$BASE_DIR/zsh/custom/plugins/git" "$OH_MY_ZSH/custom/plugins"
+    ln -sF "$BASE_DIR/zsh/custom/plugins/gitfast" "$OH_MY_ZSH/custom/plugins"
 fi
 
 # Setup Sublime Text 3 syncing
 pushd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/ && ln -sF ~/Dropbox/Sublime/User && popd
 
+# Install symlinks to dotfiles
 python install-dotfiles.py
 
 echo "
@@ -26,5 +35,4 @@ Now you need to:
 - Sign-in to Dropbox
 - Set iTerm2 to load preferences from ~/Dropbox/iTerm2
 - Activate Alfred, Sublime Text, 1Password
-- Apply changes to git plugin in ~/.oh-my-zsh from previous laptop
 "
