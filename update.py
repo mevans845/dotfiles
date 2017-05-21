@@ -130,7 +130,8 @@ class Dotfiles(SymlinkRequirement):
             ".vimrc",
             ".quip.shrc",
             ".quip.vimrc",
-            ".slate.js"
+            ".slate.js",
+            ".updatelaptop",
         ]
         for filename in filenames:
             src_path = os.path.join(SRC_DIR, filename)
@@ -165,17 +166,6 @@ def main(dry_run=False):
         for requirement in still_failing:
             print("  ", requirement)
         sys.exit(1)
-
-    print("Setup complete")
-    print("""
-Now you need to:
-    - Setup ssh keys
-    - Install 1Password
-    - Change default shell to zsh
-    - Sign-in to Dropbox
-    - Set iTerm2 to load preferences from ~/Dropbox/iTerm2
-    - Activate Alfred, Sublime Text, 1Password
-""")
 
 
 if __name__ == "__main__":

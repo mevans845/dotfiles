@@ -1,22 +1,4 @@
-# Binaries
-*.o
-*.so
-
-# Java class files
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# Vim swap files
-*.swp
-
 # Mac OS files
 .DS_Store
 
-# LaTeX generated files
-*.aux
-*.log
-*.pdf
+.last-update-time

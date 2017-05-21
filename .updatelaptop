@@ -1,0 +1,40 @@
+#!/bin/sh
+
+set -e
+
+FILE_PATH=$0
+if [[ -h "$FILE_PATH" ]]; then
+    FILE_PATH=$(readlink $FILE_PATH)
+fi
+REPO_DIR=$(dirname  $FILE_PATH)
+cd "$REPO_DIR"
+
+LAST_UPDATE_TIME_FILE=".last-update-time"
+
+# Check if already updated in the last 24 hours
+CURRENT_TIME=$(date +%s)
+LAST_UPDATE_TIME=0
+UPDATE_INTERVAL=86400
+
+if [[ -e $LAST_UPDATE_TIME_FILE ]]; then
+    LAST_UPDATE_TIME=$(cat $LAST_UPDATE_TIME_FILE)
+fi
+
+TIME_SINCE_LAST_UPDATE=$(( CURRENT_TIME - LAST_UPDATE_TIME ))
+
+if [[ $TIME_SINCE_LAST_UPDATE -lt $UPDATE_INTERVAL ]]; then
+    exit
+fi
+
+echo "Updating laptop..."
+
+if [[ ! -z "$LAST_UPDATE_TIME" ]]; then
+    echo "Last update was $(( $TIME_SINCE_LAST_UPDATE / 86400 )) days ago"
+fi
+
+# Run the update
+git pull
+python3 update.py
+
+# Update the last updated timestamp
+echo "$CURRENT_TIME" > "$LAST_UPDATE_TIME_FILE"
