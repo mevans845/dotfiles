@@ -85,7 +85,7 @@ class Pip3(Requirement):
     def is_satisfied(self):
         import json
         ret = run_silent("pip3 list --format=json")
-        json = json.loads(ret.stdout)
+        json = json.loads(ret.stdout.decode("utf-8"))
         missing = self.packages - set(row["name"] for row in json)
         return not missing
 
