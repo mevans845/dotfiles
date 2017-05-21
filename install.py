@@ -74,7 +74,7 @@ class Brew(Requirement):
         return ret.returncode == 0
 
     def install(self):
-        run("brew bundle")
+        run("brew bundle -v")
 
 
 class Pip3(Requirement):
