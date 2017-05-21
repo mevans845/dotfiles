@@ -118,8 +118,8 @@ class SublimeSyncing(SymlinkRequirement):
     def _get_paths(self):
         yield (os.path.join(HOME_DIR, "Dropbox/Sublime/User"),
                os.path.join(
-                HOME_DIR,
-                "Library/Application Support/Sublime Text 3/Packages/User"))
+               HOME_DIR,
+               "Library/Application Support/Sublime Text 3/Packages/User"))
 
 
 class Dotfiles(SymlinkRequirement):
