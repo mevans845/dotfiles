@@ -151,9 +151,9 @@ def main(dry_run=False):
 
     for requirement in requirements:
         if requirement.is_satisfied():
-            print("%s: PASSED" % requirement)
+            print("✔ %s" % requirement)
         else:
-            print("%s: FAILED" % requirement)
+            print("❌ %s" % requirement)
             if not dry_run:
                 print("Installing %s" % requirement)
                 requirement.install()
@@ -162,7 +162,7 @@ def main(dry_run=False):
                      if not requirement.is_satisfied()]
 
     if still_failing:
-        print("Some requirements still failed:")
+        print("🚨 Some requirements still failed:")
         for requirement in still_failing:
             print("  ", requirement)
         sys.exit(1)
