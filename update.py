@@ -153,7 +153,7 @@ def main(dry_run=False):
         if requirement.is_satisfied():
             print("✔ %s" % requirement)
         else:
-            print("❌ %s" % requirement)
+            print("❌  %s" % requirement)
             if not dry_run:
                 print("Installing %s" % requirement)
                 requirement.install()
