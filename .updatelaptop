@@ -28,7 +28,7 @@ fi
 
 echo "Updating laptop..."
 
-if [[ ! -z "$LAST_UPDATE_TIME" ]]; then
+if [[ "$LAST_UPDATE_TIME" -gt 0 ]]; then
     echo "Last update was $(( $TIME_SINCE_LAST_UPDATE / 86400 )) days ago"
 fi
 
