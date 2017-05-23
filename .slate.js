@@ -152,7 +152,13 @@ function setupSmall() {
     "width" : "screenSizeX/2",
     "height" : "screenSizeY*0.8"
   });
-  var layoutSmall = createLayout("small", pushRight, pushLeft, moveTopLeft, pushRight, pushRight);
+  var moveMini = slate.operation("move", {
+    "x": "screenOriginX + screenSizeX/4",
+    "y": "screenOriginX + screenSizeY/2",
+    "width" : "screenSizeX/2",
+    "height" : "screenSizeY/2"
+  });
+  var layoutSmall = createLayout("small", pushRight, pushLeft, moveTopLeft, pushRight, moveMini);
 
   slate.bind("2:cmd,ctrl", function(win) {
     win.doOperation(slate.operation("layout", {"name": layoutSmall}));
