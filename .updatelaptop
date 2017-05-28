@@ -34,7 +34,6 @@ fi
 
 # Run the update
 git pull
-brew update
 python3 update.py
 
 # Update the last updated timestamp

@@ -68,12 +68,13 @@ class SymlinkRequirement(Requirement):
             os.symlink(src_path, dest_path)
 
 
-class Brew(Requirement):
+class BrewBundle(Requirement):
     def is_satisfied(self):
         ret = run_silent("brew bundle check")
         return ret.returncode == 0
 
     def install(self):
+        run("brew update")
         run("brew bundle -v")
 
 
@@ -142,7 +143,7 @@ class Dotfiles(SymlinkRequirement):
 def main(dry_run=False):
     requirements = [
         Dotfiles(),
-        Brew(),
+        BrewBundle(),
         Pip3(),
         OhMyZsh(),
         OhMyZshCustomPlugins(),
