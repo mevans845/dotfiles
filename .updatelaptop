@@ -2,15 +2,17 @@
 
 set -e
 
-FILE_PATH=$0
-if [[ -h "$FILE_PATH" ]]; then
-    FILE_PATH=$(readlink $FILE_PATH)
+UPDATE_INTERVAL=86400
+LAST_UPDATE_TIME_FILE=".last-update-time"
+LOCK_FILE=".lock"
+
+file_path=$0
+if [[ -h "$file_path" ]]; then
+    file_path=$(readlink $file_path)
 fi
-REPO_DIR=$(dirname  $FILE_PATH)
-cd "$REPO_DIR"
+cd $(dirname  $file_path)
 
 # Make sure only one update process is running
-LOCK_FILE=".lock"
 if [[ -e $LOCK_FILE ]]; then
     exit
 fi
@@ -21,27 +23,31 @@ trap clear_lock EXIT
 touch $LOCK_FILE
 
 # Check if already updated in the last 24 hours
-CURRENT_TIME=$(date +%s)
-LAST_UPDATE_TIME=0
-UPDATE_INTERVAL=86400
-LAST_UPDATE_TIME_FILE=".last-update-time"
+current_time=$(date +%s)
+last_update_time=0
 
 if [[ -e $LAST_UPDATE_TIME_FILE ]]; then
-    LAST_UPDATE_TIME=$(cat $LAST_UPDATE_TIME_FILE)
+    last_update_time=$(cat $LAST_UPDATE_TIME_FILE)
 fi
 
-TIME_SINCE_LAST_UPDATE=$(( CURRENT_TIME - LAST_UPDATE_TIME ))
+time_since_last_update=$(( current_time - last_update_time ))
 
-if [[ $TIME_SINCE_LAST_UPDATE -lt $UPDATE_INTERVAL ]]; then
+if [[ $time_since_last_update -lt $UPDATE_INTERVAL ]]; then
     exit
 fi
 
-if [[ "$LAST_UPDATE_TIME" -gt 0 ]]; then
-    echo "Last update was $(( $TIME_SINCE_LAST_UPDATE / 86400 )) days ago"
-fi
-
 # Update the repo
+head_ref=$(git rev-parse HEAD)
 git pull
+new_head_ref=$(git rev-parse HEAD)
+
+if [[ "$last_update_time" -gt 0 ]]; then
+    echo "Last update was $(( $time_since_last_update / 86400 )) days ago"
+    if [[ "$head_ref" == "$new_head_ref" ]]; then
+        echo "No new updates to the repo. Skipping."
+        exit
+    fi
+fi
 
 # Run the update
 python3 update.py
