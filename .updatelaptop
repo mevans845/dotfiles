@@ -2,8 +2,7 @@
 
 set -e
 
-UPDATE_INTERVAL=86400
-LAST_UPDATE_TIME_FILE=".last-update-time"
+LAST_UPDATE_HASH=".last-update-hash"
 LOCK_FILE=".lock"
 
 file_path=$0
@@ -22,35 +21,21 @@ function clear_lock {
 trap clear_lock EXIT
 touch $LOCK_FILE
 
-# Check if already updated in the last 24 hours
-current_time=$(date +%s)
-last_update_time=0
-
-if [[ -e $LAST_UPDATE_TIME_FILE ]]; then
-    last_update_time=$(cat $LAST_UPDATE_TIME_FILE)
-fi
-
-time_since_last_update=$(( current_time - last_update_time ))
-
-if [[ $time_since_last_update -lt $UPDATE_INTERVAL ]]; then
-    exit
-fi
-
 # Update the repo
-head_ref=$(git rev-parse HEAD)
 git pull
-new_head_ref=$(git rev-parse HEAD)
 
-if [[ "$last_update_time" -gt 0 ]]; then
-    echo "Last update was $(( $time_since_last_update / 86400 )) days ago"
-    if [[ "$head_ref" == "$new_head_ref" ]]; then
-        echo "No new updates to the repo. Skipping."
-        exit
-    fi
+# Check if there are new updates to the repo
+last_update_hash=""
+if [[ -e $LAST_UPDATE_HASH ]]; then
+    last_update_hash=$(cat $LAST_UPDATE_HASH)
+fi
+current_hash=$(git rev-parse HEAD)
+if [[ "$last_update_hash" == "$current_hash" ]]; then
+    exit
 fi
 
 # Run the update
 python3 update.py
 
 # Update the last updated timestamp
-echo "$CURRENT_TIME" > "$LAST_UPDATE_TIME_FILE"
+echo "$current_hash" > "$LAST_UPDATE_HASH"
