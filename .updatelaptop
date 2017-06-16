@@ -2,14 +2,25 @@
 
 set -e
 
-LAST_UPDATE_HASH=".last-update-hash"
+UPDATE_INTERVAL=86400
+LAST_UPDATE_TIME_FILE=".last-update-time"
+LAST_UPDATE_HASH_FILE=".last-update-hash"
 LOCK_FILE=".lock"
 
+# cd to repo dir
 file_path=$0
 if [[ -h "$file_path" ]]; then
     file_path=$(readlink $file_path)
 fi
 cd $(dirname  $file_path)
+
+# Ensure expected files exist
+touch $LAST_UPDATE_TIME_FILE
+touch $LAST_UPDATE_HASH_FILE
+
+# Read values
+read last_update_time < $LAST_UPDATE_TIME_FILE
+read last_update_hash < $LAST_UPDATE_HASH_FILE
 
 # Make sure only one update process is running
 if [[ -e $LOCK_FILE ]]; then
@@ -21,21 +32,20 @@ function clear_lock {
 trap clear_lock EXIT
 touch $LOCK_FILE
 
+# Only update once per update interval
+current_time=$(date +%s)
+time_since_last_update=$(( current_time - last_update_time ))
+[[ $time_since_last_update -lt $UPDATE_INTERVAL ]] && exit
+
 # Update the repo
 git pull
 
 # Check if there are new updates to the repo
-last_update_hash=""
-if [[ -e $LAST_UPDATE_HASH ]]; then
-    last_update_hash=$(cat $LAST_UPDATE_HASH)
-fi
 current_hash=$(git rev-parse HEAD)
-if [[ "$last_update_hash" == "$current_hash" ]]; then
-    exit
-fi
+[[ "$last_update_hash" == "$current_hash" ]] && exit
 
 # Run the update
 python3 update.py
 
 # Update the last updated timestamp
-echo "$current_hash" > "$LAST_UPDATE_HASH"
+echo "$current_hash" > "$LAST_UPDATE_HASH_FILE"
