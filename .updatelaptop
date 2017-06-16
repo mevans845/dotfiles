@@ -15,17 +15,15 @@ fi
 cd $(dirname  $file_path)
 
 # Ensure expected files exist
-touch $LAST_UPDATE_TIME_FILE
-touch $LAST_UPDATE_HASH_FILE
+touch "$LAST_UPDATE_TIME_FILE"
+touch "$LAST_UPDATE_HASH_FILE"
 
 # Read values
-read last_update_time < $LAST_UPDATE_TIME_FILE
-read last_update_hash < $LAST_UPDATE_HASH_FILE
+last_update_time=$(cat "$LAST_UPDATE_TIME_FILE")
+last_update_hash=$(cat "$LAST_UPDATE_HASH_FILE")
 
 # Make sure only one update process is running
-if [[ -e $LOCK_FILE ]]; then
-    exit
-fi
+[[ -e $LOCK_FILE ]] && exit
 function clear_lock {
     rm $LOCK_FILE
 }
@@ -36,6 +34,8 @@ touch $LOCK_FILE
 current_time=$(date +%s)
 time_since_last_update=$(( current_time - last_update_time ))
 [[ $time_since_last_update -lt $UPDATE_INTERVAL ]] && exit
+
+echo "$current_time" > "$LAST_UPDATE_TIME_FILE"
 
 # Update the repo
 git pull
