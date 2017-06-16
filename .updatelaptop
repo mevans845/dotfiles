@@ -9,12 +9,22 @@ fi
 REPO_DIR=$(dirname  $FILE_PATH)
 cd "$REPO_DIR"
 
-LAST_UPDATE_TIME_FILE=".last-update-time"
+# Make sure only one update process is running
+LOCK_FILE=".lock"
+if [[ -e $LOCK_FILE ]]; then
+    exit
+fi
+function clear_lock {
+    rm $LOCK_FILE
+}
+trap clear_lock EXIT
+touch $LOCK_FILE
 
 # Check if already updated in the last 24 hours
 CURRENT_TIME=$(date +%s)
 LAST_UPDATE_TIME=0
 UPDATE_INTERVAL=86400
+LAST_UPDATE_TIME_FILE=".last-update-time"
 
 if [[ -e $LAST_UPDATE_TIME_FILE ]]; then
     LAST_UPDATE_TIME=$(cat $LAST_UPDATE_TIME_FILE)
@@ -26,14 +36,14 @@ if [[ $TIME_SINCE_LAST_UPDATE -lt $UPDATE_INTERVAL ]]; then
     exit
 fi
 
-echo "Updating laptop..."
-
 if [[ "$LAST_UPDATE_TIME" -gt 0 ]]; then
     echo "Last update was $(( $TIME_SINCE_LAST_UPDATE / 86400 )) days ago"
 fi
 
-# Run the update
+# Update the repo
 git pull
+
+# Run the update
 python3 update.py
 
 # Update the last updated timestamp
