@@ -40,6 +40,8 @@ alias gb='git branch'
 alias gc='git commit -v'
 alias gcap='git commit -a --amend -C HEAD'
 alias gco='git checkout'
+gf() { git checkout -b "$1" origin/master }
+compdef _git gf=git-checkout
 alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gdc='git diff --cached'
