@@ -42,6 +42,7 @@ cask 'slate'
 cask 'sonos'
 cask 'spotify'
 cask 'sublime-text'
+cask 'transmission'
 cask 'tower'
 cask 'vlc'
 
