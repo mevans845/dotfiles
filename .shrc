@@ -14,7 +14,7 @@ alias glme="git log --author=shrey"
 alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
 
 export PATH=$PATH:$HOME/go_appengine:/usr/local/mysql/bin:/usr/local/sbin
-export GOPATH=$HOME/code/go-workspace
+export GOPATH=$HOME/go
 
 function _exists() {
     command -v $1 > /dev/null 2>&1

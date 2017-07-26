@@ -45,6 +45,7 @@ cask 'sublime-text'
 cask 'transmission'
 cask 'tower'
 cask 'vlc'
+cask 'visual-studio-code'
 
 # QuickLook plugins
 cask 'qlcolorcode'
