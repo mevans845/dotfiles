@@ -6,7 +6,7 @@ function include () {
     [[ -f "$1" ]] && source "$1"
 }
 
-include ".quip.shrc"
+include "$HOME/.quip.shrc"
 
 alias ggo='hub browse -- commit/$(git log -n 1 --pretty=format:"%h")'
 alias pp="git pull && git push"

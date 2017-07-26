@@ -10,4 +10,4 @@ export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="cpp"
 export DISABLE_WV2=1
 ulimit -n 4096
 
-cd quip
+cd $HOME/quip
