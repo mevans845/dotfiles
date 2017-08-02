@@ -11,7 +11,11 @@ include "$HOME/.quip.shrc"
 alias ggo='hub browse -- commit/$(git log -n 1 --pretty=format:"%h")'
 alias pp="git pull && git push"
 alias glme="git log --author=shrey"
-alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
+function gcpr() {
+    commit=$(git rev-parse ${1:-"HEAD"})
+    # Assumes git instaweb is running on port 1234
+    open "http://127.0.0.1:1234/?p=.git;a=commitdiff;ds=sidebyside;h=$commit"
+}
 
 export PATH=$PATH:$HOME/go_appengine:/usr/local/mysql/bin:/usr/local/sbin
 export GOPATH=$HOME/go
