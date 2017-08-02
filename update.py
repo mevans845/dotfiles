@@ -60,7 +60,7 @@ class SymlinkRequirement(Requirement):
         for src_path, dest_path in self._get_paths():
             if is_linked(src_path, dest_path):
                 continue
-            if os.path.exists(dest_path):
+            if os.path.lexists(dest_path):
                 if input("%s already exists. Replace? [y/N]: " %
                          dest_path) != "y":
                     continue
