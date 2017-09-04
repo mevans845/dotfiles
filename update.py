@@ -81,7 +81,7 @@ class BrewBundle(Requirement):
 class BrewAnalytics(Requirement):
     def is_satisfied(self):
         ret = run_silent("brew analytics state")
-        return "Analytics is enabled." in ret.stdout
+        return "Analytics is disabled." in ret.stdout.decode("utf-8")
 
     def install(self):
         run("brew analytics off")
@@ -153,6 +153,7 @@ def main(dry_run=False):
     requirements = [
         Dotfiles(),
         BrewBundle(),
+        BrewAnalytics(),
         Pip3(),
         OhMyZsh(),
         OhMyZshCustomPlugins(),
