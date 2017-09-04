@@ -78,6 +78,15 @@ class BrewBundle(Requirement):
         run("brew bundle -v")
 
 
+class BrewAnalytics(Requirement):
+    def is_satisfied(self):
+        ret = run_silent("brew analytics state")
+        return "Analytics is enabled." in ret.stdout
+
+    def install(self):
+        run("brew analytics off")
+
+
 class Pip3(Requirement):
     packages = {
         "ipython"
