@@ -58,6 +58,7 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 
 # Android mappings
 export PATH="$PATH":~/android-sdk-macosx/tools
+export PATH="$PATH":~/android-sdk-macosx/tools/bin
 export PATH="$PATH":~/android-sdk-macosx/platform-tools
 export PATH="$PATH":~/android-ndk-r10d
 export PATH="$PATH":~/quip/android/tools
