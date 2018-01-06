@@ -26,3 +26,5 @@ plugins=(gitfast yarn)
 DISABLE_UPDATE_PROMPT=true
 
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

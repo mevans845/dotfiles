@@ -7,6 +7,7 @@ import sys
 HOME_DIR = os.getenv("HOME")
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 OH_MY_ZSH_DIR = os.path.join(HOME_DIR, ".oh-my-zsh")
+BREW_DIR = "/usr/local"
 
 
 def is_linked(src_path, dest_path):
@@ -132,6 +133,14 @@ class SublimeSyncing(SymlinkRequirement):
                "Library/Application Support/Sublime Text 3/Packages/User"))
 
 
+class FuzzyFinder(Requirement):
+    def is_satisfied(self):
+        return os.path.exists(os.path.join(HOME_DIR, ".fzf.zsh"))
+
+    def install(self):
+        run_shell(os.path.join(BREW_DIR, "opt/fzf/install"))
+
+
 class Dotfiles(SymlinkRequirement):
     def _get_paths(self):
         filenames = [
@@ -158,6 +167,7 @@ def main(dry_run=False):
         OhMyZsh(),
         OhMyZshCustomPlugins(),
         SublimeSyncing(),
+        FuzzyFinder()
     ]
 
     for requirement in requirements:
