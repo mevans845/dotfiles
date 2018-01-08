@@ -14,6 +14,9 @@ ZSH_THEME="clean"
 # Annoying beeps
 setopt NO_BEEP
 
+# Remove duplicates from history
+setopt HIST_IGNORE_ALL_DUPS
+
 # Alt-back and forward to skip over words
 bindkey '[D' backward-word
 bindkey '[C' forward-word
