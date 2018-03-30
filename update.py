@@ -1,3 +1,4 @@
+import filecmp
 import os
 import subprocess
 import shlex
@@ -49,6 +50,12 @@ class SymlinkRequirement(Requirement):
         # Should yield (src, dest) pairs
         raise NotImplementedError()
 
+    def _remove_path(path):
+        os.remove(path)
+
+    def _link_path(src_path, dest_path):
+        os.symlink(src_path, dest_path)
+
     def is_satisfied(self):
         for src_path, dest_path in self._get_paths():
             assert os.path.exists(src_path), "%s doesn't exist" % src_path
@@ -65,8 +72,40 @@ class SymlinkRequirement(Requirement):
                 if input("%s already exists. Replace? [y/N]: " %
                          dest_path) != "y":
                     continue
-                os.remove(dest_path)
-            os.symlink(src_path, dest_path)
+                self._remove_path(dest_path)
+            self._link_path(src_path, dest_path)
+
+
+class SudoSymlinkRequirement(SymlinkRequirement):
+    def _remove_path(self, path):
+        run(f"sudo rm {path}")
+
+    def _link_path(self, src_path, dest_path):
+        run(f"sudo ln -s {src_path} {dest_path}")
+
+
+class SudoCopyRequirement(Requirement):
+    def _get_paths():
+        # Should yield (src, dest) pairs
+        raise NotImplementedError()
+
+    def _copy_path(src_path, dest_path):
+        os.symlink(src_path, dest_path)
+
+    def is_satisfied(self):
+        for src_path, dest_path in self._get_paths():
+            assert os.path.exists(src_path), "%s doesn't exist" % src_path
+            if not os.path.exists(dest_path):
+                return False
+            if not filecmp.cmp(src_path, dest_path):
+                return False
+        return True
+
+    def install(self):
+        for src_path, dest_path in self._get_paths():
+            if os.path.lexists(dest_path):
+                run(f"sudo rm {dest_path}")
+            run(f"sudo cp {src_path} {dest_path}")
 
 
 class BrewBundle(Requirement):
@@ -158,16 +197,25 @@ class Dotfiles(SymlinkRequirement):
             yield src_path, dest_path
 
 
+class GitWebCss(SudoCopyRequirement):
+    def _get_paths(self):
+        return [
+            ("gitweb-common.conf", "/etc/gitweb-common.conf"),
+            ("gitweb-custom.css", "/Applications/Xcode.app/Contents/Developer/usr/share/gitweb/static/gitweb-custom.css"),
+        ]
+
+
 def main(dry_run=False):
     requirements = [
         Dotfiles(),
         BrewBundle(),
         BrewAnalytics(),
+        FuzzyFinder(),
+        GitWebCss(),
         Pip3(),
         OhMyZsh(),
         OhMyZshCustomPlugins(),
         SublimeSyncing(),
-        FuzzyFinder()
     ]
 
     for requirement in requirements:
