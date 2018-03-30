@@ -20,32 +20,8 @@ function gcpr() {
 export PATH=$PATH:$HOME/go_appengine:/usr/local/mysql/bin:/usr/local/sbin
 export GOPATH=$HOME/go
 
-function _exists() {
-    command -v $1 > /dev/null 2>&1
-    echo "$(( !$? ))"
-}
-
-# Opens files in a single MacVim server.
-# Picks the first server in serverlist if there are multiple servers
-function OpenInMacVim {
-    server=$(mvim --serverlist | head -1)
-    if [ -n "$server" ]; then
-        if [ -z "$1" ]; then
-            osascript -e 'tell application "MacVim" to activate'
-        else
-            mvim --servername $server --remote-tab $@
-        fi
-    else
-        mvim $@
-    fi
-}
-
-if [[ $(_exists mvim) -ne 0 ]]; then
-    alias vi='OpenInMacVim'
-fi
-
-# subl as the default editor
-export EDITOR='subl -w'
+# VS Code as the default editor
+export EDITOR='code -w'
 
 # Color in man pages
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking-mode
@@ -63,6 +39,7 @@ export PATH="$PATH":~/android-sdk-macosx/platform-tools
 export PATH="$PATH":~/android-ndk-r10d
 export PATH="$PATH":~/quip/android/tools
 export ANDROID_NDK="${HOME}/android-ndk-r10d/"
+
 # Yarn
 export PATH="$HOME/.yarn/bin:$PATH"
 
