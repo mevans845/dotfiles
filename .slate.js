@@ -97,6 +97,7 @@ function createLayout(name, pushRight, pushLeft, moveTopLeft, moveMiddle, moveMi
     "Safari": getBrowserParams(/^Web\sInspector\s-\s.+$/),
     "iTerm2": getParams(pushLeft),
     "Sublime Text": getParams(pushRight),
+    "Code": getParams(pushRight),
     "MacVim": getParams(pushRight),
     "Quip": getParams(moveMini)
   });
