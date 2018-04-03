@@ -50,10 +50,10 @@ class SymlinkRequirement(Requirement):
         # Should yield (src, dest) pairs
         raise NotImplementedError()
 
-    def _remove_path(path):
+    def _remove_path(self, path):
         os.remove(path)
 
-    def _link_path(src_path, dest_path):
+    def _link_path(self, src_path, dest_path):
         os.symlink(src_path, dest_path)
 
     def is_satisfied(self):
@@ -172,6 +172,14 @@ class SublimeSyncing(SymlinkRequirement):
                "Library/Application Support/Sublime Text 3/Packages/User"))
 
 
+class CodeSyncing(SymlinkRequirement):
+    def _get_paths(self):
+        yield (os.path.join(SRC_DIR, "Code/User/settings.json"),
+               os.path.join(
+               HOME_DIR,
+               "Library/Application Support/Code/User/settings.json"))
+
+
 class FuzzyFinder(Requirement):
     def is_satisfied(self):
         return os.path.exists(os.path.join(HOME_DIR, ".fzf.zsh"))
@@ -216,6 +224,7 @@ def main(dry_run=False):
         OhMyZsh(),
         OhMyZshCustomPlugins(),
         SublimeSyncing(),
+        CodeSyncing(),
     ]
 
     for requirement in requirements:
