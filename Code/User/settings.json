@@ -5,7 +5,6 @@
     "window.zoomLevel": 0,
     "editor.multiCursorModifier": "alt",
     "editor.snippetSuggestions": "top",
-    "editor.wordWrap": "wordWrapColumn",
     "search.quickOpen.includeSymbols": true,
     "git.autofetch": false,
     "gitlens.advanced.messages": {
