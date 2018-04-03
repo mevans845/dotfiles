@@ -1,0 +1,39 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "terminal.external.osxExec": "iTerm.app",
+    "workbench.fontAliasing": "auto",
+    "window.zoomLevel": 0,
+    "editor.multiCursorModifier": "alt",
+    "editor.snippetSuggestions": "top",
+    "editor.wordWrap": "wordWrapColumn",
+    "search.quickOpen.includeSymbols": true,
+    "git.autofetch": false,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true
+    },
+    "sublimeTextKeymap.promptV3Features": true,
+    "gitlens.explorers.avatars": false,
+    "gitlens.codeLens.scopes": [
+        "document"
+    ],
+    "gitlens.codeLens.recentChange.command": "gitlens.toggleFileBlame",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.hovers.currentLine.over": "line",
+    "gitlens.blame.avatars": false,
+    "search.location": "panel",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "~/quip/bin/flake8",
+    "python.linting.flake8Args": [
+        "--max-line-length=8000",
+        "--ignore=F841,F401,E402,E731,E129,E127,E125,E128,N802,N806"
+    ],
+    "reflow.preferredLineLength": 72,
+}
