@@ -1,11 +1,12 @@
 // Place your settings in this file to overwrite the default settings
 {
     "terminal.external.osxExec": "iTerm.app",
-    "workbench.fontAliasing": "auto",
+    "workbench.fontAliasing": "antialiased",
     "window.zoomLevel": 0,
+    "editor.fontSize": 13,
+    "editor.fontFamily": "Roboto Mono",
     "editor.multiCursorModifier": "alt",
     "editor.snippetSuggestions": "top",
-    "search.quickOpen.includeSymbols": true,
     "git.autofetch": false,
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
@@ -27,6 +28,7 @@
     "gitlens.hovers.currentLine.over": "line",
     "gitlens.blame.avatars": false,
     "search.location": "panel",
+    "python.pythonPath": "/usr/local/bin/python3",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Path": "~/quip/bin/flake8",
