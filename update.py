@@ -198,6 +198,7 @@ class Dotfiles(SymlinkRequirement):
             ".quip.vimrc",
             ".slate.js",
             ".updatelaptop",
+            ".gitconfig"
         ]
         for filename in filenames:
             src_path = os.path.join(SRC_DIR, filename)

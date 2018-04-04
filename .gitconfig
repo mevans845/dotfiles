@@ -1,9 +1,34 @@
-[color]
-  diff = auto
-  status = auto
-  branch = auto
+[pull]
+  rebase = true
+[push]
+  default = simple
+  followTags = true
 [user]
   name = Shrey Banga
-  email = banga.shrey@gmail.com
+  email = shrey@quip.com
 [core]
-	excludesfile = /Users/shrey/.gitignore
+  pager = diff-highlight | less --tabs=4 -RFX
+[color "diff"]
+  meta = yellow bold
+  commit = green bold
+  frag = green bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = "red bold reverse"
+  newNormal = "green bold"
+  newHighlight = "green bold reverse"
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[diff]
+  tool = "code"
+[merge]
+  tool = "code"
+[difftool "code"]
+  cmd = code --wait -n --diff $LOCAL $REMOTE
+[mergetool "code"]
+  cmd = code --wait -n --diff $MERGED
