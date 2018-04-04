@@ -7,7 +7,7 @@
   name = Shrey Banga
   email = shrey@quip.com
 [core]
-  pager = diff-highlight | less --tabs=4 -RFX
+  pager = diff-so-fancy | less --tabs=4 -RFX
 [color "diff"]
   meta = yellow bold
   commit = green bold

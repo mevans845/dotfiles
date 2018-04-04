@@ -9,6 +9,7 @@ tap 'homebrew/services'
 
 brew 'go'
 brew 'codemod'
+brew 'diff-so-fancy'
 brew 'dnsmasq'
 brew 'flake8'
 brew 'fzf'
