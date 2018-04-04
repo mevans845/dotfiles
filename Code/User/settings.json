@@ -1,14 +1,26 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "terminal.external.osxExec": "iTerm.app",
-    "workbench.fontAliasing": "antialiased",
-    "window.zoomLevel": 0,
-    "editor.fontSize": 13,
     "editor.fontFamily": "Roboto Mono",
+    "editor.fontSize": 13,
     "editor.multiCursorModifier": "alt",
     "editor.snippetSuggestions": "top",
     "files.trimTrailingWhitespace": true,
     "git.autofetch": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "~/quip/bin/flake8",
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.linting.flake8Args": [
+        "--max-line-length=8000",
+        "--ignore=F841,F401,E402,E731,E129,E127,E125,E128,N802,N806"
+    ],
+    "search.location": "panel",
+    "terminal.external.osxExec": "iTerm.app",
+    "window.zoomLevel": 0,
+    "workbench.fontAliasing": "antialiased",
+
+    // Extensions
+
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -19,22 +31,14 @@
         "suppressResultsExplorerNotice": false,
         "suppressShowKeyBindingsNotice": true
     },
-    "sublimeTextKeymap.promptV3Features": true,
     "gitlens.explorers.avatars": false,
     "gitlens.codeLens.scopes": [
         "document"
     ],
+    "gitlens.blame.avatars": false,
     "gitlens.codeLens.recentChange.command": "gitlens.toggleFileBlame",
     "gitlens.currentLine.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
-    "gitlens.blame.avatars": false,
-    "search.location": "panel",
-    "python.pythonPath": "/usr/local/bin/python3",
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "~/quip/bin/flake8",
-    "python.linting.flake8Args": [
-        "--max-line-length=8000",
-        "--ignore=F841,F401,E402,E731,E129,E127,E125,E128,N802,N806"
-    ],
+
+    "sublimeTextKeymap.promptV3Features": true,
 }
