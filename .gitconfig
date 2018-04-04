@@ -29,6 +29,6 @@
 [merge]
   tool = "code"
 [difftool "code"]
-  cmd = code --wait -n --diff $LOCAL $REMOTE
+  cmd = code --wait --diff $LOCAL $REMOTE
 [mergetool "code"]
-  cmd = code --wait -n --diff $MERGED
+  cmd = code --wait $MERGED
