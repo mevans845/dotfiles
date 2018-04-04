@@ -174,10 +174,10 @@ class SublimeSyncing(SymlinkRequirement):
 
 class CodeSyncing(SymlinkRequirement):
     def _get_paths(self):
-        yield (os.path.join(SRC_DIR, "Code/User/settings.json"),
-               os.path.join(
-               HOME_DIR,
-               "Library/Application Support/Code/User/settings.json"))
+        for filename in ["settings.json", "keybindings.json"]:
+            yield (os.path.join(SRC_DIR, "Code/User/settings.json"),
+                   os.path.join(HOME_DIR, "Library/Application Support/Code/"
+                                "User/settings.json"))
 
 
 class FuzzyFinder(Requirement):
