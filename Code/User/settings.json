@@ -41,4 +41,6 @@
     "gitlens.hovers.currentLine.over": "line",
 
     "sublimeTextKeymap.promptV3Features": true,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
 }
