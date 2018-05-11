@@ -2,6 +2,8 @@
 {
     "editor.fontFamily": "Roboto Mono",
     "editor.fontSize": 14,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
     "editor.multiCursorModifier": "alt",
     "editor.snippetSuggestions": "top",
     "files.trimTrailingWhitespace": true,
