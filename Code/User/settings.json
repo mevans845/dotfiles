@@ -4,6 +4,8 @@
     "editor.fontSize": 14,
     "editor.formatOnPaste": false,
     "editor.formatOnSave": false,
+    "editor.detectIndentation": true,
+    "editor.useTabStops": true,
     "editor.multiCursorModifier": "alt",
     "editor.snippetSuggestions": "top",
     "files.trimTrailingWhitespace": true,
@@ -20,9 +22,7 @@
     "terminal.external.osxExec": "iTerm.app",
     "window.zoomLevel": 0,
     "workbench.fontAliasing": "antialiased",
-
     // Extensions
-
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -41,8 +41,8 @@
     "gitlens.codeLens.recentChange.command": "gitlens.toggleFileBlame",
     "gitlens.currentLine.enabled": false,
     "gitlens.hovers.currentLine.over": "line",
-
-    "sublimeTextKeymap.promptV3Features": true,
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
+    "workbench.activityBar.visible": false,
+    "workbench.statusBar.visible": false,
 }
