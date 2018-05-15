@@ -43,26 +43,28 @@ function setupCommon() {
 
   // Bindings
   slate.bind("right:alt,ctrl", function(win) {
-      win.doOperation(pushRight);
+    win && win.doOperation(pushRight);
   });
   slate.bind("left:alt,ctrl", function(win) {
-      win.doOperation(pushLeft);
+    win && win.doOperation(pushLeft);
   });
   slate.bind("up:alt", function(win) {
-    win.doOperation(allOps);
+    win && win.doOperation(allOps);
   });
   slate.bind("=:alt,ctrl", function(win) {
-    win.doOperation(grow);
+    win && win.doOperation(grow);
   });
   slate.bind("-:alt,ctrl", function(win) {
-    win.doOperation(shrink);
+    win && win.doOperation(shrink);
   });
   slate.bind("o:alt,ctrl", function(win) {
-    var appName = win.app().name();
-    win.doOperation("hide", {
-      "app": "all-but:'" + appName + "'"
-    });
-    win.doOperation(moveCenter);
+    if (win) {
+      var appName = win.app().name();
+      win.doOperation("hide", {
+        "app": "all-but:'" + appName + "'"
+      });
+      win.doOperation(moveCenter);
+    }
   });
 }
 
