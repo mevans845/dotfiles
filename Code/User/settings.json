@@ -45,4 +45,5 @@
     "telemetry.enableCrashReporter": false,
     "workbench.activityBar.visible": false,
     "workbench.statusBar.visible": false,
+    "gitlens.historyExplorer.enabled": true,
 }
