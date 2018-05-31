@@ -3,14 +3,15 @@ slate.bind("r:alt,ctrl,shift", function(win) {
     win.doOperation(slate.operation("relaunch"));
 });
 
+var maximize = slate.operation("move", {
+  "x" : "screenOriginX",
+  "y" : "screenOriginY",
+  "width" : "screenSizeX",
+  "height" : "screenSizeY"
+});
+
 // Common operations
 function setupCommon() {
-  var fullScreen = slate.operation("move", {
-    "x" : "screenOriginX",
-    "y" : "screenOriginY",
-    "width" : "screenSizeX",
-    "height" : "screenSizeY"
-  });
   var grow = slate.operation("move", {
     "x": "max({0, windowTopLeftX - windowSizeX * 0.5 * 0.2})",
     "y": "max({0, windowTopLeftY - windowSizeY * 0.5 * 0.1})",
@@ -32,7 +33,7 @@ function setupCommon() {
     "style" : "bar-resize:screenSizeX/2"
   });
   var allOps = slate.operation("chain", {
-    "operations": [fullScreen, pushRight, pushLeft]
+    "operations": [maximize, pushRight, pushLeft]
   })
   var moveCenter = slate.operation("move", {
     "x": "screenOriginX + screenSizeX * 0.1",
@@ -99,7 +100,7 @@ function createLayout(name, pushRight, pushLeft, moveTopLeft, moveMiddle, moveMi
     "Safari": getBrowserParams(/^Web\sInspector\s-\s.+$/),
     "iTerm2": getParams(pushLeft),
     "Sublime Text": getParams(pushRight),
-    "Code": getParams(pushRight),
+    "Code": getParams(maximize),
     "MacVim": getParams(pushRight),
     "Quip": getParams(moveMini)
   });
