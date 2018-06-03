@@ -232,6 +232,10 @@ def main(dry_run=False):
         CodeSyncing(),
     ]
 
+    if len(sys.argv) > 1:
+        whitelist = set(sys.argv[1:])
+        requirements = filter(lambda r: r.__class__.__name__ in whitelist, requirements)
+
     for requirement in requirements:
         if requirement.is_satisfied():
             print("✔ %s" % requirement)
