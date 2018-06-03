@@ -37,7 +37,8 @@
         "terminal.ansiBrightGreen": "#597",
         "terminal.ansiBrightRed": "#d06360",
         "terminal.ansiBrightBlue": "#79a",
-        "terminal.ansiBrightYellow": "#ebc17a"
+        "terminal.ansiBrightYellow": "#ebc17a",
+        "terminal.ansiMagenta": "#e06698"
     },
     // Extensions
     "gitlens.advanced.messages": {
