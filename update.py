@@ -2,6 +2,7 @@ import filecmp
 import os
 import subprocess
 import shlex
+import shutil
 import sys
 
 
@@ -51,7 +52,10 @@ class SymlinkRequirement(Requirement):
         raise NotImplementedError()
 
     def _remove_path(self, path):
-        os.remove(path)
+        if os.path.isdir(path):
+            shutil.rmtree(path)
+        else:
+            os.remove(path)
 
     def _link_path(self, src_path, dest_path):
         os.symlink(src_path, dest_path)
@@ -174,10 +178,10 @@ class SublimeSyncing(SymlinkRequirement):
 
 class CodeSyncing(SymlinkRequirement):
     def _get_paths(self):
-        for filename in ["settings.json", "keybindings.json"]:
-            yield (os.path.join(SRC_DIR, "Code/User/settings.json"),
+        for filename in ["settings.json", "keybindings.json", "snippets"]:
+            yield (os.path.join(SRC_DIR, "Code/User/" + filename),
                    os.path.join(HOME_DIR, "Library/Application Support/Code/"
-                                "User/settings.json"))
+                                "User/" + filename))
 
 
 class FuzzyFinder(Requirement):

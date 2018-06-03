@@ -20,6 +20,10 @@
     ],
     "search.location": "panel",
     "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.confirmOnExit": true,
+    "terminal.integrated.fontFamily": "Monaco",
+    "terminal.integrated.fontWeightBold": "normal",
+    "terminal.integrated.scrollback": 10000,
     "window.zoomLevel": 0,
     "workbench.fontAliasing": "antialiased",
     // Extensions
@@ -46,4 +50,5 @@
     "workbench.activityBar.visible": false,
     "workbench.statusBar.visible": false,
     "gitlens.historyExplorer.enabled": true,
+    "workbench.iconTheme": "vscode-icons",
 }
