@@ -23,6 +23,7 @@
     "telemetry.enableCrashReporter": false,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.confirmOnExit": true,
+    "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.fontFamily": "Monaco",
     "terminal.integrated.fontWeightBold": "normal",
     "terminal.integrated.scrollback": 10000,
