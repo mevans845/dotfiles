@@ -2,25 +2,78 @@
 [
     {
         "key": "cmd+l",
+        "command": "-expandLineSelection",
+        "when": "editorFocus"
+    },
+    {
+        "key": "cmd+l",
         "command": "workbench.action.togglePanel"
     },
     {
         "key": "cmd+j",
         "command": "-workbench.action.togglePanel"
     },
+    // Scratchpad
     {
-        "key": "cmd+i",
-        "command": "expandLineSelection",
-        "when": "editorFocus"
+        "key": "ctrl+cmd+escape",
+        "command": "extension.openScratchpad",
+        "when": "editorTextFocus"
+    },
+    // Terminal
+    {
+        "key": "shift+cmd+[",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
     },
     {
-        "key": "cmd+l",
-        "command": "-expandLineSelection",
-        "when": "editorFocus"
+        "key": "shift+cmd+]",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
     },
     {
-        "key": "cmd+i",
-        "command": "-expandLineSelection",
-        "when": "textInputFocus"
+        "key": "cmd+1",
+        "command": "workbench.action.terminal.focusAtIndex1",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.terminal.focusAtIndex2",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+3",
+        "command": "workbench.action.terminal.focusAtIndex3",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+4",
+        "command": "workbench.action.terminal.focusAtIndex4",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+5",
+        "command": "workbench.action.terminal.focusAtIndex5",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "cmd+6",
+        "command": "workbench.action.terminal.focusAtIndex6",
+        "when": "terminalFocus"
+    },
+    // Open in GitHub
+    {
+        "key": "ctrl+cmd+b",
+        "command": "openInGithub.openInGitHubBlame",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+cmd+f",
+        "command": "openInGithub.openInGitHubFile",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+cmd+h",
+        "command": "openInGithub.openInGitHubHistory",
+        "when": "editorTextFocus"
     }
 ]
