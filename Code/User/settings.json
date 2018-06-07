@@ -10,14 +10,6 @@
     "editor.snippetSuggestions": "top",
     "files.trimTrailingWhitespace": true,
     "git.autofetch": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "~/quip/bin/flake8",
-    "python.linting.pylintEnabled": false,
-    "python.pythonPath": "/usr/local/bin/python3",
-    "python.linting.flake8Args": [
-        "--max-line-length=8000",
-        "--ignore=F841,F401,E402,E731,E129,E127,E125,E128,N802,N806"
-    ],
     "search.location": "panel",
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
