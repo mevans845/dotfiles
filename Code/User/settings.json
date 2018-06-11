@@ -33,6 +33,7 @@
         "terminal.ansiBrightYellow": "#ebc17a",
         "terminal.ansiMagenta": "#e06698"
     },
+    "workbench.panel.defaultLocation": "right",
     // Extensions
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
