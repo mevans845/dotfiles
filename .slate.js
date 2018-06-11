@@ -36,9 +36,9 @@ function setupCommon() {
     "operations": [maximize, pushRight, pushLeft]
   })
   var moveCenter = slate.operation("move", {
-    "x": "screenOriginX + screenSizeX * 0.1",
+    "x": "screenOriginX + screenSizeX * 0.2",
     "y": "screenOriginY + screenSizeY * 0.05",
-    "width": "screenSizeX * 0.8",
+    "width": "screenSizeX * 0.6",
     "height": "screenSizeY * 0.9"
   });
 
