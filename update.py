@@ -192,6 +192,16 @@ class FuzzyFinder(Requirement):
         run_shell(os.path.join(BREW_DIR, "opt/fzf/install"))
 
 
+class DepotTools(Requirement):
+    path = os.path.join(HOME_DIR, "depot_tools")
+
+    def is_satisfied(self):
+        return os.path.exists(self.path)
+
+    def install(self):
+        run(f"git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git {self.path}")
+
+
 class Dotfiles(SymlinkRequirement):
     def _get_paths(self):
         filenames = [
@@ -224,6 +234,7 @@ def main(dry_run=False):
         BrewBundle(),
         BrewAnalytics(),
         FuzzyFinder(),
+        DepotTools(),
         GitWebCss(),
         Pip3(),
         OhMyZsh(),
