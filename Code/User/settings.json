@@ -1,5 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
+    "editor.autoClosingBrackets": false,
     "editor.fontFamily": "Roboto Mono",
     "editor.fontSize": 14,
     "editor.formatOnPaste": false,
@@ -30,7 +31,8 @@
         "terminal.ansiBrightGreen": "#597",
         "terminal.ansiBrightRed": "#d06360",
         "terminal.ansiBrightBlue": "#79a",
-        "terminal.ansiBrightYellow": "#ebc17a",
+        "terminal.ansiYellow": "#ebc17a",
+        "terminal.ansiBrightYellow": "#fcd28b",
         "terminal.ansiMagenta": "#e06698"
     },
     "workbench.panel.defaultLocation": "right",
@@ -55,5 +57,6 @@
     "gitlens.currentLine.enabled": false,
     "gitlens.historyExplorer.enabled": true,
     "gitlens.hovers.currentLine.over": "line",
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.commandPalette.preserveInput": true,
 }
