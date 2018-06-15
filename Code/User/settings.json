@@ -1,30 +1,44 @@
 // Place your settings in this file to overwrite the default settings
 {
+    // editor
     "editor.autoClosingBrackets": false,
+    "editor.detectIndentation": true,
     "editor.fontFamily": "Roboto Mono",
     "editor.fontSize": 14,
     "editor.formatOnPaste": false,
     "editor.formatOnSave": false,
-    "editor.detectIndentation": true,
-    "editor.useTabStops": true,
+    "editor.minimap.enabled": false,
     "editor.multiCursorModifier": "alt",
     "editor.snippetSuggestions": "top",
+    "editor.useTabStops": true,
+
+    // files
     "files.trimTrailingWhitespace": true,
+
+    // git
     "git.autofetch": false,
+
+    // search
     "search.location": "panel",
-    "telemetry.enableTelemetry": false,
+
+    // telemetry
     "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+
+    // terminal
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.confirmOnExit": true,
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.fontFamily": "Monaco",
     "terminal.integrated.fontWeightBold": "normal",
+    "terminal.integrated.rendererType": "canvas",
     "terminal.integrated.scrollback": 10000,
+
+    // window
     "window.zoomLevel": 0,
+
+    // workbench
     "workbench.activityBar.visible": false,
-    "workbench.statusBar.visible": false,
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.fontAliasing": "antialiased",
     "workbench.colorCustomizations": {
         "terminal.foreground": "#d9d9d9",
         "terminal.background": "#2c2c2c",
@@ -35,9 +49,14 @@
         "terminal.ansiBrightYellow": "#fcd28b",
         "terminal.ansiMagenta": "#e06698"
     },
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.commandPalette.preserveInput": true,
+    "workbench.fontAliasing": "antialiased",
+    "workbench.iconTheme": "vscode-icons",
     "workbench.panel.defaultLocation": "right",
-    "terminal.integrated.rendererType": "dom",
-    // Extensions
+    "workbench.statusBar.visible": false,
+
+    // gitlens
     "gitlens.advanced.messages": {
         "suppressCommitHasNoPreviousCommitWarning": false,
         "suppressCommitNotFoundWarning": false,
@@ -48,15 +67,13 @@
         "suppressResultsExplorerNotice": false,
         "suppressShowKeyBindingsNotice": true
     },
-    "gitlens.explorers.avatars": false,
+    "gitlens.blame.avatars": false,
     "gitlens.codeLens.scopes": [
         "document"
     ],
-    "gitlens.blame.avatars": false,
     "gitlens.codeLens.recentChange.command": "gitlens.toggleFileBlame",
     "gitlens.currentLine.enabled": false,
+    "gitlens.explorers.avatars": false,
     "gitlens.historyExplorer.enabled": true,
     "gitlens.hovers.currentLine.over": "line",
-    "workbench.colorTheme": "Default Dark+",
-    "workbench.commandPalette.preserveInput": true,
 }
