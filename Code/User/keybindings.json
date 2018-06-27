@@ -87,5 +87,9 @@
     {
         "key": "cmd+numpad0",
         "command": "-workbench.action.zoomReset"
+    },
+    {
+        "key": "shift+cmd+d",
+        "command": "-workbench.view.debug"
     }
 ]
