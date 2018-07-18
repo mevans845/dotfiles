@@ -76,4 +76,5 @@
     "gitlens.explorers.avatars": false,
     "gitlens.historyExplorer.enabled": true,
     "gitlens.hovers.currentLine.over": "line",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
 }
