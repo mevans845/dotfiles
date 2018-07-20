@@ -1,11 +1,6 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/bundle'
-tap 'caskroom/cask'
-tap 'caskroom/drivers'
-tap 'caskroom/versions'
-tap 'caskroom/fonts'
-tap 'homebrew/services'
 
 brew 'go'
 brew 'codemod'
