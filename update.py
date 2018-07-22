@@ -176,12 +176,60 @@ class SublimeSyncing(SymlinkRequirement):
                "Library/Application Support/Sublime Text 3/Packages/User"))
 
 
-class CodeSyncing(SymlinkRequirement):
+class VSCodeSyncing(SymlinkRequirement):
     def _get_paths(self):
         for filename in ["settings.json", "keybindings.json", "snippets"]:
             yield (os.path.join(SRC_DIR, "Code/User/" + filename),
                    os.path.join(HOME_DIR, "Library/Application Support/Code/"
                                 "User/" + filename))
+
+
+class VSCodeExtensions(Requirement):
+    extensions = {
+        "PeterJausovec.vscode-docker",
+        "Quip.quip-code",
+        "akamud.vscode-theme-onelight",
+        "andrewmarkle.primer-light",
+        "awesomektvn.scratchpad",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "esbenp.prettier-vscode",
+        "GrapeCity.gc-excelviewer",
+        "ldcf4.jumpprotobuf",
+        "mrmlnc.vscode-less",
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "ms-vscode.sublime-keybindings",
+        "redhat.java",
+        "robertohuertasm.vscode-icons",
+        "sharat.vscode-brewfile",
+        "stkb.rewrap",
+        "sysoev.vscode-open-in-github",
+        "uloco.theme-bluloco-light",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "zxh404.vscode-proto3",
+    }
+
+    def _test(self):
+        ret = run_silent("code --list-extensions")
+        installed = set(ret.stdout.decode("utf-8").splitlines())
+        missing = self.extensions - installed
+        extra = installed - self.extensions
+        return missing, extra
+
+    def is_satisfied(self):
+        missing, extra = self._test()
+        return not missing and not extra
+
+    def install(self):
+        missing, extra = self._test()
+        for extension in missing:
+            run(f"code --install-extension {extension}")
+        for extension in extra:
+            run(f"code --uninstall-extension {extension}")
 
 
 class FuzzyFinder(Requirement):
@@ -240,7 +288,8 @@ def main(dry_run=False):
         OhMyZsh(),
         OhMyZshCustomPlugins(),
         SublimeSyncing(),
-        CodeSyncing(),
+        VSCodeSyncing(),
+        VSCodeExtensions(),
     ]
 
     if len(sys.argv) > 1:
