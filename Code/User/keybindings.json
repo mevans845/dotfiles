@@ -96,5 +96,13 @@
         "key": "shift+enter",
         "command": "-python.execSelectionInTerminal",
         "when": "editorFocus && editorLangId == 'python'"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "workbench.action.terminal.focus"
     }
 ]
