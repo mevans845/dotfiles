@@ -1,3 +1,4 @@
+import concurrent.futures
 import filecmp
 import os
 import subprocess
@@ -10,6 +11,7 @@ HOME_DIR = os.getenv("HOME")
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
 OH_MY_ZSH_DIR = os.path.join(HOME_DIR, ".oh-my-zsh")
 BREW_DIR = "/usr/local"
+DRY_RUN = False
 
 
 def is_linked(src_path, dest_path):
@@ -282,7 +284,19 @@ class KarabinerSyncing(SymlinkRequirement):
                os.path.join(HOME_DIR, ".config/karabiner"))
 
 
-def main(dry_run=False):
+def run_requirement(requirement):
+    if requirement.is_satisfied():
+        print("✨ %s" % requirement)
+        return True
+
+    print("🥚 %s" % requirement)
+    if not DRY_RUN:
+        requirement.install()
+
+    return requirement.is_satisfied()
+
+
+def main():
     requirements = [
         Dotfiles(),
         BrewBundle(),
@@ -303,22 +317,14 @@ def main(dry_run=False):
         whitelist = set(sys.argv[1:])
         requirements = filter(lambda r: r.__class__.__name__ in whitelist, requirements)
 
-    for requirement in requirements:
-        if requirement.is_satisfied():
-            print("✓ %s" % requirement)
-        else:
-            print("❌  %s" % requirement)
-            if not dry_run:
-                print("Installing %s" % requirement)
-                requirement.install()
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        results = list(executor.map(run_requirement, requirements))
 
-    still_failing = [requirement for requirement in requirements
-                     if not requirement.is_satisfied()]
-
-    if still_failing:
+    if not all(results):
         print("🚨 Some requirements still failed:")
-        for requirement in still_failing:
-            print("  ", requirement)
+        for requirement, result in zip(requirements, results):
+            if not result:
+                print("  ", requirement)
         sys.exit(1)
 
 
