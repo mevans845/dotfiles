@@ -276,6 +276,12 @@ class GitWebCss(SudoCopyRequirement):
         ]
 
 
+class KarabinerSyncing(SymlinkRequirement):
+    def _get_paths(self):
+        yield (os.path.join(HOME_DIR, "Dropbox/karabiner"),
+               os.path.join(HOME_DIR, ".config/karabiner"))
+
+
 def main(dry_run=False):
     requirements = [
         Dotfiles(),
@@ -284,6 +290,7 @@ def main(dry_run=False):
         FuzzyFinder(),
         DepotTools(),
         GitWebCss(),
+        KarabinerSyncing(),
         Pip3(),
         OhMyZsh(),
         OhMyZshCustomPlugins(),
