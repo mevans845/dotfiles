@@ -69,7 +69,7 @@ function setupCommon() {
   });
 }
 
-function createLayout(name, pushRight, pushLeft, moveTopLeft, moveMiddle, moveMini) {
+function createLayout(name, pushRight, pushLeft, moveTopRight, moveMiddle, moveMini) {
   // Layout params
   var getBrowserParams = function(regex) {
     return {
@@ -78,7 +78,7 @@ function createLayout(name, pushRight, pushLeft, moveTopLeft, moveMiddle, moveMi
         if (title && title.match(regex)) {
           win.doOperation(moveMiddle);
         } else {
-          win.doOperation(moveTopLeft);
+          win.doOperation(moveTopRight);
         }
       }],
       "ignore-fail": true,
@@ -98,11 +98,11 @@ function createLayout(name, pushRight, pushLeft, moveTopLeft, moveMiddle, moveMi
     "Google Chrome": getBrowserParams(/^Developer\sTools\s-\s.+$/),
     "Firefox": getBrowserParams(/^Firebug\s-\s.+$/),
     "Safari": getBrowserParams(/^Web\sInspector\s-\s.+$/),
-    "iTerm2": getParams(pushLeft),
-    "Sublime Text": getParams(pushRight),
-    "Code": getParams(maximize),
-    "MacVim": getParams(pushRight),
-    "Quip": getParams(moveMini)
+    "iTerm2": getParams(pushRight),
+    "Sublime Text": getParams(pushLeft),
+    "Code": getParams(pushLeft),
+    "MacVim": getParams(pushLeft),
+    "Quip": getParams(pushRight)
   });
 }
 
@@ -110,14 +110,14 @@ function setupBig() {
   // Operations
   var pushRight = slate.operation("push", {
     "direction" : "right",
-    "style" : "bar-resize:screenSizeX*2/3"
+    "style" : "bar-resize:screenSizeX/3"
   });
   var pushLeft = slate.operation("push", {
     "direction" : "left",
-    "style" : "bar-resize:screenSizeX/3"
+    "style" : "bar-resize:screenSizeX*2/3"
   });
-  var moveTopLeft = slate.operation("corner", {
-    "direction" : "top-left",
+  var moveTopRight = slate.operation("corner", {
+    "direction" : "top-right",
     "width" : "screenSizeX/3",
     "height" : "screenSizeY*0.8"
   });
@@ -134,7 +134,7 @@ function setupBig() {
     "height" : "screenSizeY/2"
   });
 
-  var layoutBig = createLayout("big", pushRight, pushLeft, moveTopLeft, moveMiddle, moveMini);
+  var layoutBig = createLayout("big", pushRight, pushLeft, moveTopRight, moveMiddle, moveMini);
 
   slate.bind("1:cmd,ctrl", function(win) {
     win.doOperation(slate.operation("layout", {"name": layoutBig}));
@@ -151,8 +151,8 @@ function setupSmall() {
     "direction" : "left",
     "style" : "bar-resize:screenSizeX/2"
   });
-  var moveTopLeft = slate.operation("corner", {
-    "direction" : "top-left",
+  var moveTopRight = slate.operation("corner", {
+    "direction" : "top-right",
     "width" : "screenSizeX/2",
     "height" : "screenSizeY*0.8"
   });
@@ -162,7 +162,7 @@ function setupSmall() {
     "width" : "screenSizeX/2",
     "height" : "screenSizeY/2"
   });
-  var layoutSmall = createLayout("small", pushRight, pushLeft, moveTopLeft, pushRight, moveMini);
+  var layoutSmall = createLayout("small", pushRight, pushLeft, moveTopRight, pushRight, moveMini);
 
   slate.bind("2:cmd,ctrl", function(win) {
     win.doOperation(slate.operation("layout", {"name": layoutSmall}));
