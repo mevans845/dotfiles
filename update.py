@@ -305,7 +305,7 @@ def main(dry_run=False):
 
     for requirement in requirements:
         if requirement.is_satisfied():
-            print("✔ %s" % requirement)
+            print("✓ %s" % requirement)
         else:
             print("❌  %s" % requirement)
             if not dry_run:
