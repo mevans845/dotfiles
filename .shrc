@@ -43,9 +43,6 @@ export ANDROID_NDK="${HOME}/android-ndk-r10d/"
 # Yarn
 export PATH="$HOME/.yarn/bin:$PATH"
 
-# Depot Tools
-export PATH="$PATH:${HOME}/depot_tools"
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then
   source "$HOME/google-cloud-sdk/path.zsh.inc"
