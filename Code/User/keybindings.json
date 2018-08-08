@@ -19,47 +19,6 @@
         "command": "extension.openScratchpad",
         "when": "editorTextFocus"
     },
-    // Terminal
-    {
-        "key": "shift+cmd+[",
-        "command": "workbench.action.terminal.focusPrevious",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "shift+cmd+]",
-        "command": "workbench.action.terminal.focusNext",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "cmd+1",
-        "command": "workbench.action.terminal.focusAtIndex1",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "cmd+2",
-        "command": "workbench.action.terminal.focusAtIndex2",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "cmd+3",
-        "command": "workbench.action.terminal.focusAtIndex3",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "cmd+4",
-        "command": "workbench.action.terminal.focusAtIndex4",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "cmd+5",
-        "command": "workbench.action.terminal.focusAtIndex5",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "cmd+6",
-        "command": "workbench.action.terminal.focusAtIndex6",
-        "when": "terminalFocus"
-    },
     // Open in GitHub
     {
         "key": "ctrl+cmd+b",
@@ -110,5 +69,32 @@
         "key": "ctrl+`",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
-    }
+    },
+    {
+        "key": "shift+cmd+]",
+        "command": "-workbench.action.nextEditor"
+    },
+    {
+        "key": "shift+cmd+[",
+        "command": "-workbench.action.previousEditor"
+    },
+    {
+        "key": "shift+cmd+]",
+        "command": "-workbench.action.nextEditor"
+    },
+    {
+        "key": "shift+cmd+[",
+        "command": "-workbench.action.previousEditor"
+    },
+    // Terminal
+    {
+        "key": "shift+cmd+[",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "shift+cmd+]",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus"
+    },
 ]
