@@ -70,31 +70,4 @@
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
     },
-    {
-        "key": "shift+cmd+]",
-        "command": "-workbench.action.nextEditor"
-    },
-    {
-        "key": "shift+cmd+[",
-        "command": "-workbench.action.previousEditor"
-    },
-    {
-        "key": "shift+cmd+]",
-        "command": "-workbench.action.nextEditor"
-    },
-    {
-        "key": "shift+cmd+[",
-        "command": "-workbench.action.previousEditor"
-    },
-    // Terminal
-    {
-        "key": "shift+cmd+[",
-        "command": "workbench.action.terminal.focusPreviousPane",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "shift+cmd+]",
-        "command": "workbench.action.terminal.focusNextPane",
-        "when": "terminalFocus"
-    },
 ]
