@@ -80,4 +80,5 @@
 
     // rewrap
     "rewrap.autoWrap.enabled": true,
+    "breadcrumbs.enabled": true,
 }
