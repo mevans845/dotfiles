@@ -201,6 +201,7 @@ class VSCodeExtensions(Requirement):
         "mrmlnc.vscode-less",
         "ms-python.python",
         "ms-vscode.cpptools",
+        "ms-vscode.csharp",
         "ms-vscode.sublime-keybindings",
         "redhat.java",
         "robertohuertasm.vscode-icons",
