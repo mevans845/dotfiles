@@ -40,6 +40,8 @@
     // workbench
     "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
+        "statusBar.background": "#333",
+        "statusBar.foreground": "#aaa",
         "terminal.foreground": "#d9d9d9",
         "terminal.background": "#2c2c2c",
         "terminal.ansiBrightGreen": "#597",
@@ -54,7 +56,7 @@
     "workbench.fontAliasing": "antialiased",
     "workbench.iconTheme": "vscode-icons",
     "workbench.panel.defaultLocation": "right",
-    "workbench.statusBar.visible": false,
+    "workbench.statusBar.visible": true,
     "workbench.editor.enablePreviewFromQuickOpen": false,
 
     // gitlens
