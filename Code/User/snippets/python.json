@@ -12,12 +12,11 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
-	"console.NOCOMMIT": {
+	"logging.NOCOMMIT": {
 		"prefix": "log",
 		"body": [
-			"logging.NOCOMMIT('${1}: %s', ${1})",
-			"$2"
+			"logging.NOCOMMIT(\"${1:message}: %s\", $0)",
 		],
-		"description": "Log output to console"
+		"description": "Log output"
 	}
 }
