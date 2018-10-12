@@ -5,6 +5,7 @@ export PATH=$PATH:$HOME/quip/bin
 alias dd="docker-devel"
 alias pi="docker-devel ipy"
 alias ghash='echo -n https://github.com/quip/quip/commit/$(git log -n 1 --pretty=format:"%h") | pbcopy'
+alias tf="~/devops/terraform/aws/bin/tf"
 
 export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION="cpp"
 export DISABLE_WV2=1
