@@ -43,22 +43,22 @@ function setupCommon() {
   });
 
   // Bindings
-  slate.bind("right:alt,cmd", function(win) {
+  slate.bind("right:alt,ctrl", function(win) {
     win && win.doOperation(pushRight);
   });
-  slate.bind("left:alt,cmd", function(win) {
+  slate.bind("left:alt,ctrl", function(win) {
     win && win.doOperation(pushLeft);
   });
-  slate.bind("up:alt,cmd", function(win) {
+  slate.bind("up:alt,ctrl", function(win) {
     win && win.doOperation(allOps);
   });
-  slate.bind("=:alt,cmd", function(win) {
+  slate.bind("=:alt,ctrl", function(win) {
     win && win.doOperation(grow);
   });
-  slate.bind("-:alt,cmd", function(win) {
+  slate.bind("-:alt,ctrl", function(win) {
     win && win.doOperation(shrink);
   });
-  slate.bind("o:alt,cmd", function(win) {
+  slate.bind("o:alt,ctrl", function(win) {
     if (win) {
       var appName = win.app().name();
       win.doOperation("hide", {
@@ -136,7 +136,7 @@ function setupBig() {
 
   var layoutBig = createLayout("big", pushRight, pushLeft, moveTopRight, moveMiddle, moveMini);
 
-  slate.bind("1:alt,cmd", function(win) {
+  slate.bind("1:alt,ctrl", function(win) {
     win.doOperation(slate.operation("layout", {"name": layoutBig}));
   });
 }
@@ -164,13 +164,13 @@ function setupSmall() {
   });
   var layoutSmall = createLayout("small", pushRight, pushLeft, moveTopRight, pushRight, moveMini);
 
-  slate.bind("2:alt,cmd", function(win) {
+  slate.bind("2:alt,ctrl", function(win) {
     win.doOperation(slate.operation("layout", {"name": layoutSmall}));
   });
-  slate.bind("1:alt,cmd", function(win) {
+  slate.bind("1:alt,ctrl", function(win) {
     win.doOperation(pushLeft);
   });
-  slate.bind("2:alt,cmd", function(win) {
+  slate.bind("2:alt,ctrl", function(win) {
     win.doOperation(pushRight);
   });
 }
