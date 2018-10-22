@@ -39,6 +39,7 @@ export PATH="$PATH":~/android-sdk-macosx/platform-tools
 export PATH="$PATH":~/android-ndk-r10d
 export PATH="$PATH":~/quip/android/tools
 export ANDROID_NDK="${HOME}/android-ndk-r10d/"
+export ANDROID_HOME="${HOME}/android-sdk-macosx/"
 
 # Yarn
 export PATH="$HOME/.yarn/bin:$PATH"
