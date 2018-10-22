@@ -198,6 +198,7 @@ class VSCodeExtensions(Requirement):
         "esbenp.prettier-vscode",
         "GrapeCity.gc-excelviewer",
         "ldcf4.jumpprotobuf",
+        "mauve.terraform",
         "mrmlnc.vscode-less",
         "ms-python.python",
         "ms-vscode.cpptools",
