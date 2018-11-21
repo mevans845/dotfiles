@@ -188,8 +188,6 @@ class VSCodeSyncing(SymlinkRequirement):
 
 class VSCodeExtensions(Requirement):
     extensions = {
-        "PeterJausovec.vscode-docker",
-        "Quip.quip-code",
         "akamud.vscode-theme-onelight",
         "andrewmarkle.primer-light",
         "awesomektvn.scratchpad",
@@ -201,18 +199,13 @@ class VSCodeExtensions(Requirement):
         "mauve.terraform",
         "mrmlnc.vscode-less",
         "ms-python.python",
-        "ms-vscode.cpptools",
         "ms-vscode.sublime-keybindings",
-        "redhat.java",
+        "Quip.quip-code",
         "robertohuertasm.vscode-icons",
         "sharat.vscode-brewfile",
         "stkb.rewrap",
         "sysoev.vscode-open-in-github",
         "uloco.theme-bluloco-light",
-        "vscjava.vscode-java-debug",
-        "vscjava.vscode-java-pack",
-        "vscjava.vscode-java-test",
-        "vscjava.vscode-maven",
         "zxh404.vscode-proto3",
     }
 
